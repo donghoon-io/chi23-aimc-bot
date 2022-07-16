@@ -13,6 +13,7 @@
 		264B7FF12882A25900CA6848 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 264B7FEF2882A25900CA6848 /* Main.storyboard */; };
 		264B7FF32882A26300CA6848 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 264B7FF22882A26300CA6848 /* Assets.xcassets */; };
 		264B7FF62882A26300CA6848 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 264B7FF42882A26300CA6848 /* LaunchScreen.storyboard */; };
+		D6AB2ED0903A1ABE48BABD06 /* Pods_HelloBot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560089DF8C7D7245D62EAD48 /* Pods_HelloBot.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,9 @@
 		264B7FF22882A26300CA6848 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		264B7FF52882A26300CA6848 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		264B7FF72882A26300CA6848 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		560089DF8C7D7245D62EAD48 /* Pods_HelloBot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HelloBot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		900079FC6E8630ED1A318F8B /* Pods-HelloBot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloBot.release.xcconfig"; path = "Target Support Files/Pods-HelloBot/Pods-HelloBot.release.xcconfig"; sourceTree = "<group>"; };
+		A22AD2B78F89F58C767DA3F8 /* Pods-HelloBot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloBot.debug.xcconfig"; path = "Target Support Files/Pods-HelloBot/Pods-HelloBot.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6AB2ED0903A1ABE48BABD06 /* Pods_HelloBot.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +47,8 @@
 			children = (
 				264B7FE82882A25900CA6848 /* HelloBot */,
 				264B7FE72882A25900CA6848 /* Products */,
+				3C3B3789628883015A036139 /* Pods */,
+				E0FCA91FD457366BA81273D7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +74,24 @@
 			path = HelloBot;
 			sourceTree = "<group>";
 		};
+		3C3B3789628883015A036139 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A22AD2B78F89F58C767DA3F8 /* Pods-HelloBot.debug.xcconfig */,
+				900079FC6E8630ED1A318F8B /* Pods-HelloBot.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E0FCA91FD457366BA81273D7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				560089DF8C7D7245D62EAD48 /* Pods_HelloBot.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,6 +99,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 264B7FFA2882A26300CA6848 /* Build configuration list for PBXNativeTarget "HelloBot" */;
 			buildPhases = (
+				F5E63DD588D844AE31ABC8EA /* [CP] Check Pods Manifest.lock */,
 				264B7FE22882A25900CA6848 /* Sources */,
 				264B7FE32882A25900CA6848 /* Frameworks */,
 				264B7FE42882A25900CA6848 /* Resources */,
@@ -132,6 +158,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F5E63DD588D844AE31ABC8EA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HelloBot-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		264B7FE22882A25900CA6848 /* Sources */ = {
@@ -282,6 +333,7 @@
 		};
 		264B7FFB2882A26300CA6848 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A22AD2B78F89F58C767DA3F8 /* Pods-HelloBot.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -310,6 +362,7 @@
 		};
 		264B7FFC2882A26300CA6848 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 900079FC6E8630ED1A318F8B /* Pods-HelloBot.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>49065931986-o2pge6nn349cj8vc78cva5d7jksq2665.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.49065931986-o2pge6nn349cj8vc78cva5d7jksq2665</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA7HyDBv8UDFy9eblQV3nI1DemVRGZ84eM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>49065931986</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>edu.uw.HelloBot</string>
+	<key>PROJECT_ID</key>
+	<string>chi2023-aimc-bot</string>
+	<key>STORAGE_BUCKET</key>
+	<string>chi2023-aimc-bot.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:49065931986:ios:9e9cb7e5aa42fb9c9d690b</string>
+</dict>
+</plist>

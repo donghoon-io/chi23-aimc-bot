@@ -1,16 +1,32 @@
 PODS:
+  - ANLoader (2.0.0)
   - IQKeyboardManagerSwift (6.5.9)
+  - TagListView (1.4.1)
 
 DEPENDENCIES:
+  - ANLoader (from `https://github.com/ANSCoder/ANLoader.git`)
   - IQKeyboardManagerSwift
+  - TagListView (~> 1.0)
 
 SPEC REPOS:
   trunk:
     - IQKeyboardManagerSwift
+    - TagListView
+
+EXTERNAL SOURCES:
+  ANLoader:
+    :git: https://github.com/ANSCoder/ANLoader.git
+
+CHECKOUT OPTIONS:
+  ANLoader:
+    :commit: b45b12600a4dc693b83d88640e24ca0bb545fa79
+    :git: https://github.com/ANSCoder/ANLoader.git
 
 SPEC CHECKSUMS:
+  ANLoader: 25f4ed93f5d13678eb72a38c2f674acfcaba8205
   IQKeyboardManagerSwift: 6e839c575c4aa1078d58a596e41244e77abe918f
+  TagListView: a1c236d17960a0cf64156725a76ce6d73ebce2be
 
-PODFILE CHECKSUM: 8e6e39a63611dd493cf52d9e66c061a8ee0a5071
+PODFILE CHECKSUM: 50c31e950476b862c52b9d4929c7e7bd9764a9f8
 
 COCOAPODS: 1.11.2

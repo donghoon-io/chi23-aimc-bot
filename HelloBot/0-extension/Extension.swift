@@ -56,11 +56,21 @@ extension UIButton {
         self.backgroundColor = .enabledTextColor
         self.isEnabled = true
         self.alpha = 1
+        self.layer.cornerRadius = 15
+        self.clipsToBounds = true
     }
     func disable() {
         self.setTitleColor(.enabledTextColor, for: .normal)
         self.backgroundColor = .enabledTextColor
         self.isEnabled = false
         self.alpha = 0.5
+        self.layer.cornerRadius = 15
+        self.clipsToBounds = true
+    }
+}
+
+extension String {
+    func matches(_ regex: String) -> Bool {
+        return self.range(of: regex, options: .regularExpression, range: nil, locale: nil) != nil
     }
 }

@@ -13,9 +13,15 @@
 		264B7FF12882A25900CA6848 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 264B7FEF2882A25900CA6848 /* Main.storyboard */; };
 		264B7FF32882A26300CA6848 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 264B7FF22882A26300CA6848 /* Assets.xcassets */; };
 		264B7FF62882A26300CA6848 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 264B7FF42882A26300CA6848 /* LaunchScreen.storyboard */; };
-		26E672692882DA7500DFC66F /* inputIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E672682882DA7500DFC66F /* inputIDViewController.swift */; };
-		26E6726B2882DAB000DFC66F /* loginInstaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E6726A2882DAB000DFC66F /* loginInstaViewController.swift */; };
-		26E6726E2882DAF400DFC66F /* extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E6726D2882DAF400DFC66F /* extension.swift */; };
+		26DFAA422882E30800ADEEE5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DFAA412882E30800ADEEE5 /* LoginViewController.swift */; };
+		26DFAA452882E95900ADEEE5 /* Swiftagram in Frameworks */ = {isa = PBXBuildFile; productRef = 26DFAA442882E95900ADEEE5 /* Swiftagram */; };
+		26DFAA472882E95900ADEEE5 /* SwiftagramCrypto in Frameworks */ = {isa = PBXBuildFile; productRef = 26DFAA462882E95900ADEEE5 /* SwiftagramCrypto */; };
+		26DFAA492882F29100ADEEE5 /* TopicMatchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DFAA482882F29100ADEEE5 /* TopicMatchingViewController.swift */; };
+		26DFAA4C2882F4BD00ADEEE5 /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 26DFAA4B2882F4BD00ADEEE5 /* MessageKit */; };
+		26DFAA4F2882F5B600ADEEE5 /* FamChat1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DFAA4E2882F5B600ADEEE5 /* FamChat1ViewController.swift */; };
+		26E672692882DA7500DFC66F /* InputIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E672682882DA7500DFC66F /* InputIDViewController.swift */; };
+		26E6726B2882DAB000DFC66F /* LoginInstaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E6726A2882DAB000DFC66F /* LoginInstaViewController.swift */; };
+		26E6726E2882DAF400DFC66F /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E6726D2882DAF400DFC66F /* Extension.swift */; };
 		D6AB2ED0903A1ABE48BABD06 /* Pods_HelloBot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560089DF8C7D7245D62EAD48 /* Pods_HelloBot.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,9 +34,12 @@
 		264B7FF22882A26300CA6848 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		264B7FF52882A26300CA6848 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		264B7FF72882A26300CA6848 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		26E672682882DA7500DFC66F /* inputIDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = inputIDViewController.swift; sourceTree = "<group>"; };
-		26E6726A2882DAB000DFC66F /* loginInstaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginInstaViewController.swift; sourceTree = "<group>"; };
-		26E6726D2882DAF400DFC66F /* extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extension.swift; sourceTree = "<group>"; };
+		26DFAA412882E30800ADEEE5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		26DFAA482882F29100ADEEE5 /* TopicMatchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicMatchingViewController.swift; sourceTree = "<group>"; };
+		26DFAA4E2882F5B600ADEEE5 /* FamChat1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamChat1ViewController.swift; sourceTree = "<group>"; };
+		26E672682882DA7500DFC66F /* InputIDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputIDViewController.swift; sourceTree = "<group>"; };
+		26E6726A2882DAB000DFC66F /* LoginInstaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInstaViewController.swift; sourceTree = "<group>"; };
+		26E6726D2882DAF400DFC66F /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		560089DF8C7D7245D62EAD48 /* Pods_HelloBot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HelloBot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		900079FC6E8630ED1A318F8B /* Pods-HelloBot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloBot.release.xcconfig"; path = "Target Support Files/Pods-HelloBot/Pods-HelloBot.release.xcconfig"; sourceTree = "<group>"; };
 		A22AD2B78F89F58C767DA3F8 /* Pods-HelloBot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloBot.debug.xcconfig"; path = "Target Support Files/Pods-HelloBot/Pods-HelloBot.debug.xcconfig"; sourceTree = "<group>"; };
@@ -41,7 +50,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26DFAA472882E95900ADEEE5 /* SwiftagramCrypto in Frameworks */,
 				D6AB2ED0903A1ABE48BABD06 /* Pods_HelloBot.framework in Frameworks */,
+				26DFAA452882E95900ADEEE5 /* Swiftagram in Frameworks */,
+				26DFAA4C2882F4BD00ADEEE5 /* MessageKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +81,7 @@
 		264B7FE82882A25900CA6848 /* HelloBot */ = {
 			isa = PBXGroup;
 			children = (
+				26DFAA4D2882F51A00ADEEE5 /* 2-familiarization-chat */,
 				26E6726C2882DAE300DFC66F /* 0-extension */,
 				26E672672882DA3900DFC66F /* 1-configuration */,
 				264B7FE92882A25900CA6848 /* AppDelegate.swift */,
@@ -82,11 +95,21 @@
 			path = HelloBot;
 			sourceTree = "<group>";
 		};
+		26DFAA4D2882F51A00ADEEE5 /* 2-familiarization-chat */ = {
+			isa = PBXGroup;
+			children = (
+				26DFAA4E2882F5B600ADEEE5 /* FamChat1ViewController.swift */,
+			);
+			path = "2-familiarization-chat";
+			sourceTree = "<group>";
+		};
 		26E672672882DA3900DFC66F /* 1-configuration */ = {
 			isa = PBXGroup;
 			children = (
-				26E672682882DA7500DFC66F /* inputIDViewController.swift */,
-				26E6726A2882DAB000DFC66F /* loginInstaViewController.swift */,
+				26E672682882DA7500DFC66F /* InputIDViewController.swift */,
+				26DFAA482882F29100ADEEE5 /* TopicMatchingViewController.swift */,
+				26E6726A2882DAB000DFC66F /* LoginInstaViewController.swift */,
+				26DFAA412882E30800ADEEE5 /* LoginViewController.swift */,
 			);
 			path = "1-configuration";
 			sourceTree = "<group>";
@@ -94,7 +117,7 @@
 		26E6726C2882DAE300DFC66F /* 0-extension */ = {
 			isa = PBXGroup;
 			children = (
-				26E6726D2882DAF400DFC66F /* extension.swift */,
+				26E6726D2882DAF400DFC66F /* Extension.swift */,
 			);
 			path = "0-extension";
 			sourceTree = "<group>";
@@ -134,6 +157,11 @@
 			dependencies = (
 			);
 			name = HelloBot;
+			packageProductDependencies = (
+				26DFAA442882E95900ADEEE5 /* Swiftagram */,
+				26DFAA462882E95900ADEEE5 /* SwiftagramCrypto */,
+				26DFAA4B2882F4BD00ADEEE5 /* MessageKit */,
+			);
 			productName = HelloBot;
 			productReference = 264B7FE62882A25900CA6848 /* HelloBot.app */;
 			productType = "com.apple.product-type.application";
@@ -162,6 +190,10 @@
 				Base,
 			);
 			mainGroup = 264B7FDD2882A25900CA6848;
+			packageReferences = (
+				26DFAA432882E95900ADEEE5 /* XCRemoteSwiftPackageReference "Swiftagram" */,
+				26DFAA4A2882F4BD00ADEEE5 /* XCRemoteSwiftPackageReference "MessageKit" */,
+			);
 			productRefGroup = 264B7FE72882A25900CA6848 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -231,10 +263,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26DFAA422882E30800ADEEE5 /* LoginViewController.swift in Sources */,
 				264B7FEE2882A25900CA6848 /* ViewController.swift in Sources */,
-				26E672692882DA7500DFC66F /* inputIDViewController.swift in Sources */,
-				26E6726B2882DAB000DFC66F /* loginInstaViewController.swift in Sources */,
-				26E6726E2882DAF400DFC66F /* extension.swift in Sources */,
+				26DFAA492882F29100ADEEE5 /* TopicMatchingViewController.swift in Sources */,
+				26E672692882DA7500DFC66F /* InputIDViewController.swift in Sources */,
+				26E6726B2882DAB000DFC66F /* LoginInstaViewController.swift in Sources */,
+				26E6726E2882DAF400DFC66F /* Extension.swift in Sources */,
+				26DFAA4F2882F5B600ADEEE5 /* FamChat1ViewController.swift in Sources */,
 				264B7FEA2882A25900CA6848 /* AppDelegate.swift in Sources */,
 				264B7FEC2882A25900CA6848 /* SceneDelegate.swift in Sources */,
 			);
@@ -456,6 +491,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		26DFAA432882E95900ADEEE5 /* XCRemoteSwiftPackageReference "Swiftagram" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sbertix/Swiftagram.git";
+			requirement = {
+				kind = exactVersion;
+				version = 4.2.4;
+			};
+		};
+		26DFAA4A2882F4BD00ADEEE5 /* XCRemoteSwiftPackageReference "MessageKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MessageKit/MessageKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		26DFAA442882E95900ADEEE5 /* Swiftagram */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26DFAA432882E95900ADEEE5 /* XCRemoteSwiftPackageReference "Swiftagram" */;
+			productName = Swiftagram;
+		};
+		26DFAA462882E95900ADEEE5 /* SwiftagramCrypto */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26DFAA432882E95900ADEEE5 /* XCRemoteSwiftPackageReference "Swiftagram" */;
+			productName = SwiftagramCrypto;
+		};
+		26DFAA4B2882F4BD00ADEEE5 /* MessageKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26DFAA4A2882F4BD00ADEEE5 /* XCRemoteSwiftPackageReference "MessageKit" */;
+			productName = MessageKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 264B7FDE2882A25900CA6848 /* Project object */;
 }

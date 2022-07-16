@@ -8,6 +8,7 @@ target 'HelloBot' do
   # Pods for HelloBot
 
   pod 'IQKeyboardManagerSwift'
-
+  pod 'ANLoader', :git => 'https://github.com/ANSCoder/ANLoader.git'
+  pod 'TagListView', '~> 1.0'
 
 end

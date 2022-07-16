@@ -40,17 +40,23 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kWr-cO-280">
-                                <rect key="frame" x="30" y="169" width="354" height="224.5"/>
+                                <rect key="frame" x="30" y="169" width="354" height="190.5"/>
                                 <attributedString key="attributedText">
                                     <fragment>
-                                        <string key="content">먼저, 실험에 참가 신청해주셔서 정말 감사드립니다.  본 실험은 약 20분 소요될 예정이며, 이후 설문조사를 약 30분동안 진행하여 총 1시간 이내로 소요될 예정입니다.  모든 과정은 본 앱 내에서 가이드하는 대로 진행하시면 되며, 중간에 어려운 점이 있다면 본 연구자 (010-8216-5201)에게 언제든지 연락해주시면 감사하겠습니다.</string>
+                                        <string key="content">먼저, 실험에 참가해주셔서 정말 감사드립니다.  본 실험은 약 20분 소요될 예정이며, 이후 설문조사를 약 30분동안 진행하여 총 1시간 이내로 소요될 예정입니다.  모든 과정은 본 앱 내에서 가이드하는 대로 진행하시면 되며, 중간에 어려운 점이 있다면 책임연구자 (신동훈; 010-8216-5201)에게 언제든지 연락해주시면 감사하겠습니다.</string>
                                         <attributes>
-                                            <color key="NSColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="17" name="AppleSDGothicNeo-Regular"/>
+                                            <color key="NSColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="16" name="AppleSDGothicNeo-Light"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.1000000000000001" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="University of Washington IRB No. STUDY00015819 PI: Donghoon Shin (dhoon@uw.edu)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TvE-3P-QfP">
+                                <rect key="frame" x="30" y="746.5" width="354" height="31.5"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="13"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -59,12 +65,15 @@
                         <constraints>
                             <constraint firstItem="OJN-mH-R55" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="COH-kC-XiJ"/>
                             <constraint firstItem="kWr-cO-280" firstAttribute="top" secondItem="8MQ-2L-htY" secondAttribute="bottom" constant="30" id="KxB-O2-ex1"/>
+                            <constraint firstItem="TvE-3P-QfP" firstAttribute="leading" secondItem="8MQ-2L-htY" secondAttribute="leading" id="XWI-iw-fID"/>
                             <constraint firstItem="8MQ-2L-htY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="bfv-Bc-GbS"/>
                             <constraint firstItem="kWr-cO-280" firstAttribute="trailing" secondItem="8MQ-2L-htY" secondAttribute="trailing" id="cpj-AN-xj0"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="OJN-mH-R55" secondAttribute="bottom" constant="15" id="dco-eD-tA6"/>
+                            <constraint firstItem="OJN-mH-R55" firstAttribute="top" secondItem="TvE-3P-QfP" secondAttribute="bottom" constant="15" id="ddN-qS-WMS"/>
                             <constraint firstItem="8MQ-2L-htY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jcK-Ba-Ea0"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="OJN-mH-R55" secondAttribute="trailing" constant="30" id="pdN-v8-Dm1"/>
                             <constraint firstItem="kWr-cO-280" firstAttribute="leading" secondItem="8MQ-2L-htY" secondAttribute="leading" id="pqP-9H-cjN"/>
+                            <constraint firstItem="TvE-3P-QfP" firstAttribute="trailing" secondItem="8MQ-2L-htY" secondAttribute="trailing" id="uVO-FE-qpV"/>
                             <constraint firstItem="8MQ-2L-htY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="15" id="vfj-S8-ZKM"/>
                         </constraints>
                     </view>
@@ -95,7 +104,7 @@
         <!--InputID View Controller-->
         <scene sceneID="2Wu-Da-7yb">
             <objects>
-                <viewController id="ZX5-Aq-kfi" customClass="inputIDViewController" customModule="HelloBot" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ZX5-Aq-kfi" customClass="InputIDViewController" customModule="HelloBot" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qet-Dh-NH3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -114,7 +123,7 @@
                                     <color key="baseForegroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="Pdl-do-4tT" kind="show" id="hoi-PR-bMr"/>
+                                    <segue destination="Pdl-do-4tT" kind="show" id="7Wr-el-F6t"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="먼저, 실험 시작 전 부여받은 ID를 입력해주세요:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ams-53-vf5">
@@ -122,7 +131,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="Tcz-Ax-eNz"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="16"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -159,6 +168,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Dbr-ps-s9k"/>
+                    <connections>
+                        <outlet property="idTextField" destination="FtP-Lj-SQh" id="5jK-nT-rvs"/>
+                        <outlet property="nextButton" destination="5ue-vY-sm4" id="XVh-7f-GsI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G9v-hN-ufg" sceneMemberID="firstResponder"/>
             </objects>
@@ -167,7 +180,7 @@
         <!--Login Insta View Controller-->
         <scene sceneID="qC9-Hn-Fgw">
             <objects>
-                <viewController id="Pdl-do-4tT" customClass="loginInstaViewController" customModule="HelloBot" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Pdl-do-4tT" customClass="LoginInstaViewController" customModule="HelloBot" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0p8-nr-IBB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -185,6 +198,9 @@
                                     <fontDescription key="titleFontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="18"/>
                                     <color key="baseForegroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="loginButtonClicked:" destination="Pdl-do-4tT" eventType="touchUpInside" id="sUJ-KI-SiT"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2. 인스타그램 ID 로그인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpL-b4-naX">
                                 <rect key="frame" x="30" y="103" width="354" height="36"/>
@@ -193,13 +209,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H7K-ca-Tiy">
-                                <rect key="frame" x="30" y="169" width="354" height="135"/>
+                                <rect key="frame" x="30" y="169" width="354" height="127"/>
                                 <attributedString key="attributedText">
                                     <fragment>
                                         <string key="content">다음, 아래 버튼을 눌러 본인의 인스타그램에 로그인 해주세요.  본 로그인 정보 (ID,  패스워드 등)는 인스타그램 자체 API를 통해 처리되어 연구자도 볼 수 없으며, 연구 도중에 활용된 정보는 연구가 끝나는 즉시 삭제됩니다.</string>
                                         <attributes>
                                             <color key="NSColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="17" name="AppleSDGothicNeo-Regular"/>
+                                            <font key="NSFont" size="16" name="AppleSDGothicNeo-Regular"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.1000000000000001" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -222,10 +238,105 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="YK6-wW-MvF"/>
+                    <connections>
+                        <segue destination="gnV-Sd-NEV" kind="show" identifier="goMatching" id="hvl-aF-8CI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4MQ-pW-Aht" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2354" y="72"/>
+        </scene>
+        <!--Topic Matching View Controller-->
+        <scene sceneID="3d0-ow-em4">
+            <objects>
+                <viewController id="gnV-Sd-NEV" customClass="TopicMatchingViewController" customModule="HelloBot" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CbM-pf-5GY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3. 대화 주제 찾기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tI3-tK-lrG">
+                                <rect key="frame" x="30" y="103" width="354" height="36"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="30"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kKM-lj-Xs2">
+                                <rect key="frame" x="30" y="169" width="354" height="106"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="AI가 두 명의 사용자가 인스타그램에 올린 게시글을 바탕으로 흥미를 가질만한 대화 주제를 골라봤어요.  이 중, 본인이 다른 참여자와 대화를 나눴으면 하는 주제를 모두 골라보세요! (최소 3개 이상)">
+                                        <attributes>
+                                            <color key="NSColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="16" name="AppleSDGothicNeo-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.1000000000000001" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3tE-e7-4l0" customClass="TagListView" customModule="TagListView">
+                                <rect key="frame" x="30" y="305" width="354" height="120"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="yRQ-ot-l98"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FhE-XW-Dli">
+                                <rect key="frame" x="30" y="793" width="354" height="54"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="FhE-XW-Dli" secondAttribute="height" multiplier="72:11" id="pzG-SM-h07"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="대화 시작하기">
+                                    <backgroundConfiguration key="background" cornerRadius="15">
+                                        <color key="backgroundColor" white="0.88" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </backgroundConfiguration>
+                                    <fontDescription key="titleFontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="18"/>
+                                    <color key="baseForegroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </buttonConfiguration>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="7gN-ID-w6a"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="3tE-e7-4l0" firstAttribute="trailing" secondItem="tI3-tK-lrG" secondAttribute="trailing" id="4zt-iE-WOY"/>
+                            <constraint firstItem="3tE-e7-4l0" firstAttribute="leading" secondItem="tI3-tK-lrG" secondAttribute="leading" id="ANy-DB-uqx"/>
+                            <constraint firstItem="FhE-XW-Dli" firstAttribute="leading" secondItem="7gN-ID-w6a" secondAttribute="leading" constant="30" id="Df7-hO-dfK"/>
+                            <constraint firstItem="3tE-e7-4l0" firstAttribute="top" secondItem="kKM-lj-Xs2" secondAttribute="bottom" constant="30" id="Fpi-rR-aET"/>
+                            <constraint firstItem="7gN-ID-w6a" firstAttribute="bottom" secondItem="FhE-XW-Dli" secondAttribute="bottom" constant="15" id="GMk-r5-H1e"/>
+                            <constraint firstItem="kKM-lj-Xs2" firstAttribute="trailing" secondItem="tI3-tK-lrG" secondAttribute="trailing" id="GwQ-tk-w3n"/>
+                            <constraint firstItem="tI3-tK-lrG" firstAttribute="leading" secondItem="7gN-ID-w6a" secondAttribute="leading" constant="30" id="U6X-Op-G8k"/>
+                            <constraint firstItem="tI3-tK-lrG" firstAttribute="top" secondItem="7gN-ID-w6a" secondAttribute="top" constant="15" id="aL8-68-fgq"/>
+                            <constraint firstItem="kKM-lj-Xs2" firstAttribute="top" secondItem="tI3-tK-lrG" secondAttribute="bottom" constant="30" id="aXr-uB-MuV"/>
+                            <constraint firstItem="7gN-ID-w6a" firstAttribute="trailing" secondItem="FhE-XW-Dli" secondAttribute="trailing" constant="30" id="gCa-Ac-nN9"/>
+                            <constraint firstAttribute="trailing" secondItem="tI3-tK-lrG" secondAttribute="trailing" constant="30" id="kRh-7d-ZFI"/>
+                            <constraint firstItem="kKM-lj-Xs2" firstAttribute="leading" secondItem="tI3-tK-lrG" secondAttribute="leading" id="n2U-RT-y3I"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Ams-BY-tpm"/>
+                    <connections>
+                        <outlet property="startButton" destination="FhE-XW-Dli" id="srD-ap-hRK"/>
+                        <outlet property="tagHeight" destination="yRQ-ot-l98" id="pVQ-Ab-X3z"/>
+                        <outlet property="tagListView" destination="3tE-e7-4l0" id="hGb-hq-C5M"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H5N-4f-nqj" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3043" y="72"/>
+        </scene>
+        <!--Fam Chat1 View Controller-->
+        <scene sceneID="Mse-eq-cd6">
+            <objects>
+                <viewController id="wEI-yc-9cO" customClass="FamChat1ViewController" customModule="HelloBot" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hrw-TD-jKf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Ei3-9Q-1oR"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1R6-0O-hmz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4603" y="72"/>
         </scene>
     </scenes>
     <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>

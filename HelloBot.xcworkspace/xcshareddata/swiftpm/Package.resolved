@@ -1,0 +1,59 @@
+{
+  "pins" : [
+    {
+      "identity" : "composablerequest",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sbertix/ComposableRequest",
+      "state" : {
+        "revision" : "94d352389a9f9e5c82f882747c81b72873702c02",
+        "version" : "4.3.2"
+      }
+    },
+    {
+      "identity" : "inputbaraccessoryview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nathantannar4/InputBarAccessoryView",
+      "state" : {
+        "revision" : "2843b4454cfb6de5b4d1e5939fef2dd6257b69ee",
+        "version" : "5.5.0"
+      }
+    },
+    {
+      "identity" : "messagekit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/MessageKit/MessageKit",
+      "state" : {
+        "revision" : "84236d91ac5783e3ecbefc15b82d854476720115",
+        "version" : "3.8.0"
+      }
+    },
+    {
+      "identity" : "swcrypt",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sbertix/SwCrypt.git",
+      "state" : {
+        "revision" : "e850285c2dadd4343be9465adc67cd717a64792f",
+        "version" : "5.1.4"
+      }
+    },
+    {
+      "identity" : "swiftagram",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sbertix/Swiftagram.git",
+      "state" : {
+        "revision" : "ca40e233427df358fd1fbc60a0bc5ab711982533",
+        "version" : "4.2.4"
+      }
+    },
+    {
+      "identity" : "swiftchain",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sbertix/Swiftchain.git",
+      "state" : {
+        "revision" : "ab0409e62f1629bc1a153f41dec5856a3c05a548",
+        "version" : "1.0.5"
+      }
+    }
+  ],
+  "version" : 2
+}

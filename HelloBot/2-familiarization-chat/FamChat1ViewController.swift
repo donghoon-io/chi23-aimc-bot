@@ -1,13 +1,19 @@
 //
-//  loginInstaViewController.swift
+//  FamChat1ViewController.swift
 //  HelloBot
 //
 //  Created by Donghoon Shin on 2022/07/16.
 //
 
 import UIKit
+import InputBarAccessoryView
+//import Firebase
+import MessageKit
+//import FirebaseFirestore
+//import SDWebImage
+import IQKeyboardManagerSwift
 
-class loginInstaViewController: UIViewController {
+class FamChat1ViewController: UIViewController { //MessagesViewController, InputBarAccessoryViewDelegate, MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -7,4 +7,7 @@ target 'HelloBot' do
 
   # Pods for HelloBot
 
+  pod 'IQKeyboardManagerSwift'
+
+
 end

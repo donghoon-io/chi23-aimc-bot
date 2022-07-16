@@ -13,6 +13,9 @@
 		264B7FF12882A25900CA6848 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 264B7FEF2882A25900CA6848 /* Main.storyboard */; };
 		264B7FF32882A26300CA6848 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 264B7FF22882A26300CA6848 /* Assets.xcassets */; };
 		264B7FF62882A26300CA6848 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 264B7FF42882A26300CA6848 /* LaunchScreen.storyboard */; };
+		26E672692882DA7500DFC66F /* inputIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E672682882DA7500DFC66F /* inputIDViewController.swift */; };
+		26E6726B2882DAB000DFC66F /* loginInstaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E6726A2882DAB000DFC66F /* loginInstaViewController.swift */; };
+		26E6726E2882DAF400DFC66F /* extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E6726D2882DAF400DFC66F /* extension.swift */; };
 		D6AB2ED0903A1ABE48BABD06 /* Pods_HelloBot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560089DF8C7D7245D62EAD48 /* Pods_HelloBot.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +28,9 @@
 		264B7FF22882A26300CA6848 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		264B7FF52882A26300CA6848 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		264B7FF72882A26300CA6848 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26E672682882DA7500DFC66F /* inputIDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = inputIDViewController.swift; sourceTree = "<group>"; };
+		26E6726A2882DAB000DFC66F /* loginInstaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginInstaViewController.swift; sourceTree = "<group>"; };
+		26E6726D2882DAF400DFC66F /* extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extension.swift; sourceTree = "<group>"; };
 		560089DF8C7D7245D62EAD48 /* Pods_HelloBot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HelloBot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		900079FC6E8630ED1A318F8B /* Pods-HelloBot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloBot.release.xcconfig"; path = "Target Support Files/Pods-HelloBot/Pods-HelloBot.release.xcconfig"; sourceTree = "<group>"; };
 		A22AD2B78F89F58C767DA3F8 /* Pods-HelloBot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloBot.debug.xcconfig"; path = "Target Support Files/Pods-HelloBot/Pods-HelloBot.debug.xcconfig"; sourceTree = "<group>"; };
@@ -63,6 +69,8 @@
 		264B7FE82882A25900CA6848 /* HelloBot */ = {
 			isa = PBXGroup;
 			children = (
+				26E6726C2882DAE300DFC66F /* 0-extension */,
+				26E672672882DA3900DFC66F /* 1-configuration */,
 				264B7FE92882A25900CA6848 /* AppDelegate.swift */,
 				264B7FEB2882A25900CA6848 /* SceneDelegate.swift */,
 				264B7FED2882A25900CA6848 /* ViewController.swift */,
@@ -74,13 +82,29 @@
 			path = HelloBot;
 			sourceTree = "<group>";
 		};
+		26E672672882DA3900DFC66F /* 1-configuration */ = {
+			isa = PBXGroup;
+			children = (
+				26E672682882DA7500DFC66F /* inputIDViewController.swift */,
+				26E6726A2882DAB000DFC66F /* loginInstaViewController.swift */,
+			);
+			path = "1-configuration";
+			sourceTree = "<group>";
+		};
+		26E6726C2882DAE300DFC66F /* 0-extension */ = {
+			isa = PBXGroup;
+			children = (
+				26E6726D2882DAF400DFC66F /* extension.swift */,
+			);
+			path = "0-extension";
+			sourceTree = "<group>";
+		};
 		3C3B3789628883015A036139 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				A22AD2B78F89F58C767DA3F8 /* Pods-HelloBot.debug.xcconfig */,
 				900079FC6E8630ED1A318F8B /* Pods-HelloBot.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -103,6 +127,7 @@
 				264B7FE22882A25900CA6848 /* Sources */,
 				264B7FE32882A25900CA6848 /* Frameworks */,
 				264B7FE42882A25900CA6848 /* Resources */,
+				C4B88D5A3B442A7BDC2CC022 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -160,6 +185,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		C4B88D5A3B442A7BDC2CC022 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HelloBot/Pods-HelloBot-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HelloBot/Pods-HelloBot-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HelloBot/Pods-HelloBot-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F5E63DD588D844AE31ABC8EA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -190,6 +232,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				264B7FEE2882A25900CA6848 /* ViewController.swift in Sources */,
+				26E672692882DA7500DFC66F /* inputIDViewController.swift in Sources */,
+				26E6726B2882DAB000DFC66F /* loginInstaViewController.swift in Sources */,
+				26E6726E2882DAF400DFC66F /* extension.swift in Sources */,
 				264B7FEA2882A25900CA6848 /* AppDelegate.swift in Sources */,
 				264B7FEC2882A25900CA6848 /* SceneDelegate.swift in Sources */,
 			);

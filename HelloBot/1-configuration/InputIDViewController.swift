@@ -13,6 +13,11 @@ class InputIDViewController: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var idTextField: UITextField!
     
+    @IBAction func nextButtonClicked(_ sender: UIButton) {
+        experimentID = self.idTextField.text ?? ""
+        self.performSegue(withIdentifier: "goInstaLogin", sender: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,7 +29,7 @@ class InputIDViewController: UIViewController {
     
     @objc func textFieldDidChange(_ textField: UITextField) {
         if let txt = textField.text {
-            if txt.matches(#"P\d\d"#) || txt.matches(#"p\d\d"#) {
+            if txt.matches(#"\d{3}"#) && txt.count == 3 {
                 nextButton.enable()
             } else {
                 nextButton.disable()
@@ -34,17 +39,4 @@ class InputIDViewController: UIViewController {
             nextButton.disable()
         }
     }
-
-    //P\d\d
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

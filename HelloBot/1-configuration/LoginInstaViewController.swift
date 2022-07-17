@@ -22,6 +22,7 @@ class LoginInstaViewController: UIViewController, isAbleToReceiveData {
     var secret: Secret?
     
     var posts = [String]()
+    var post_images = [String]()
     var postsCounter = [String]()
     
     var comments = [String]()
@@ -48,18 +49,20 @@ class LoginInstaViewController: UIViewController, isAbleToReceiveData {
         
         Endpoint.Media.Posts.owned(by: sec.identifier).unlocking(with: sec).task(maxLength: .max, by: .instagram) { (yaya) in
             ANLoader.hide()
-            print(self.posts)
+            
             
             self.performSegue(withIdentifier: "goMatching", sender: self)
-            
             
         } onChange: { (result) in
             switch result {
             case .success(let posts):
                 if let post = posts.media {
-                    self.posts += post.map { (media) -> String in
+                    self.posts += post.map({ media in
                         return media.caption?.text ?? ""
-                    }
+                    })
+                    self.post_images += post.map({ media in
+                        return media.code ?? ""
+                    })
                 }
                 
             case .failure(let error):
@@ -69,16 +72,14 @@ class LoginInstaViewController: UIViewController, isAbleToReceiveData {
             }
         }.resume()
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "goMatching" {
+            if let nextViewController = segue.destination as? TopicMatchingViewController {
+                nextViewController.images = self.post_images
+                nextViewController.captions = self.posts
+                nextViewController.identifier = self.identifier
+                nextViewController.secret = self.secret
+            }
+        }
     }
-    */
-
 }

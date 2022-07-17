@@ -8,6 +8,10 @@
 import UIKit
 import ANLoader
 import TagListView
+import ComposableRequest
+import ComposableRequestCrypto
+import Swiftagram
+import SwiftagramCrypto
 
 class TopicMatchingViewController: UIViewController, TagListViewDelegate {
 
@@ -16,15 +20,24 @@ class TopicMatchingViewController: UIViewController, TagListViewDelegate {
     
     @IBOutlet weak var startButton: UIButton!
     
+    var captions = [String]()
+    var images = [String]()
+    var identifier: String?
+    var secret: Secret?
+    
     var themes = ["가","나","다","라"]// [String]()
     var selectedThemes = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(images)
+        
         tagListView.delegate = self
         setTagListView()
         createTag(themes)
+        
+        startButton.disable()
     }
     
     func createTag(_ texts: [String]) {
@@ -58,5 +71,15 @@ class TopicMatchingViewController: UIViewController, TagListViewDelegate {
         tagListView.marginX = 7
         tagListView.marginY = 7
         tagListView.cornerRadius = 12
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goChatting1" {
+            if let nextViewController = segue.destination as? TopicMatchingViewController {
+                nextViewController.images = self.post_images
+                nextViewController.captions = self.posts
+                nextViewController.identifier = self.identifier
+                nextViewController.secret = self.secret
+            }
+        }
     }
 }

@@ -123,7 +123,7 @@
                                     <color key="baseForegroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="Pdl-do-4tT" kind="show" id="7Wr-el-F6t"/>
+                                    <action selector="nextButtonClicked:" destination="ZX5-Aq-kfi" eventType="touchUpInside" id="sIO-gi-ie8"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="먼저, 실험 시작 전 부여받은 ID를 입력해주세요:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ams-53-vf5">
@@ -135,7 +135,7 @@
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ex) P13" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FtP-Lj-SQh">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ex) 123" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FtP-Lj-SQh">
                                 <rect key="frame" x="30" y="204" width="354" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="eCV-gg-zWY"/>
@@ -171,6 +171,7 @@
                     <connections>
                         <outlet property="idTextField" destination="FtP-Lj-SQh" id="5jK-nT-rvs"/>
                         <outlet property="nextButton" destination="5ue-vY-sm4" id="XVh-7f-GsI"/>
+                        <segue destination="Pdl-do-4tT" kind="show" identifier="goInstaLogin" id="CFt-OY-95A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G9v-hN-ufg" sceneMemberID="firstResponder"/>
@@ -293,6 +294,9 @@
                                     <fontDescription key="titleFontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="18"/>
                                     <color key="baseForegroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <segue destination="wEI-yc-9cO" kind="show" identifier="goChatting1" id="gou-QQ-7tY"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7gN-ID-w6a"/>
@@ -333,6 +337,7 @@
                         <viewLayoutGuide key="safeArea" id="Ei3-9Q-1oR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="RPH-Tb-LXY"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1R6-0O-hmz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

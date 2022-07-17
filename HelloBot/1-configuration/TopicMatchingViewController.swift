@@ -75,8 +75,8 @@ class TopicMatchingViewController: UIViewController, TagListViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goChatting1" {
             if let nextViewController = segue.destination as? TopicMatchingViewController {
-                nextViewController.images = self.post_images
-                nextViewController.captions = self.posts
+                nextViewController.images = self.images
+                nextViewController.captions = self.captions
                 nextViewController.identifier = self.identifier
                 nextViewController.secret = self.secret
             }

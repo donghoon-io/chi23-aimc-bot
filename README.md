@@ -1,4 +1,4 @@
-## Codebase for our social chatbot
+## Codebase for the chatbot
 
 A codebase for the paper submission. Targeted to iOS
 

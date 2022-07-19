@@ -1,6 +1,6 @@
-## Codebase for CHI 2023 submission
+## Codebase for our social chatbot
 
-A codebase for CHI '23 submission. iOS-based app
+A codebase for the paper submission. Targeted to iOS
 
 ### Installation
 

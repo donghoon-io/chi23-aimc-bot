@@ -6,12 +6,13 @@
 //h
 
 import UIKit
+import TweeTextField
 
 
 class InputIDViewController: UIViewController {
     
     @IBOutlet weak var nextButton: UIButton!
-    @IBOutlet weak var idTextField: UITextField!
+    @IBOutlet weak var idTextField: TweeBorderedTextField!
     
     @IBAction func nextButtonClicked(_ sender: UIButton) {
         experimentID = self.idTextField.text ?? ""

@@ -161,6 +161,15 @@
         "revision" : "ab0409e62f1629bc1a153f41dec5856a3c05a548",
         "version" : "1.0.5"
       }
+    },
+    {
+      "identity" : "tweetextfield",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/oleghnidets/TweeTextField.git",
+      "state" : {
+        "revision" : "790fc253b534e1f72525ca03150a5dd1264cbcf4",
+        "version" : "1.6.4"
+      }
     }
   ],
   "version" : 2

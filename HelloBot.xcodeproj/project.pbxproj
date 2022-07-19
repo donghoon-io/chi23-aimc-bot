@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26374EDB2886969700EB8932 /* TweeTextField in Frameworks */ = {isa = PBXBuildFile; productRef = 26374EDA2886969700EB8932 /* TweeTextField */; };
 		264B7FEA2882A25900CA6848 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264B7FE92882A25900CA6848 /* AppDelegate.swift */; };
 		264B7FEC2882A25900CA6848 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264B7FEB2882A25900CA6848 /* SceneDelegate.swift */; };
 		264B7FEE2882A25900CA6848 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264B7FED2882A25900CA6848 /* ViewController.swift */; };
@@ -64,6 +65,7 @@
 				26DFAA472882E95900ADEEE5 /* SwiftagramCrypto in Frameworks */,
 				26DFAA542883021400ADEEE5 /* FirebaseAuth in Frameworks */,
 				D6AB2ED0903A1ABE48BABD06 /* Pods_HelloBot.framework in Frameworks */,
+				26374EDB2886969700EB8932 /* TweeTextField in Frameworks */,
 				26DFAA452882E95900ADEEE5 /* Swiftagram in Frameworks */,
 				26DFAA582883021400ADEEE5 /* FirebaseStorage in Frameworks */,
 				26DFAA4C2882F4BD00ADEEE5 /* MessageKit in Frameworks */,
@@ -190,6 +192,7 @@
 				26DFAA532883021400ADEEE5 /* FirebaseAuth */,
 				26DFAA552883021400ADEEE5 /* FirebaseFirestore */,
 				26DFAA572883021400ADEEE5 /* FirebaseStorage */,
+				26374EDA2886969700EB8932 /* TweeTextField */,
 			);
 			productName = HelloBot;
 			productReference = 264B7FE62882A25900CA6848 /* HelloBot.app */;
@@ -223,6 +226,7 @@
 				26DFAA432882E95900ADEEE5 /* XCRemoteSwiftPackageReference "Swiftagram" */,
 				26DFAA4A2882F4BD00ADEEE5 /* XCRemoteSwiftPackageReference "MessageKit" */,
 				26DFAA522883021400ADEEE5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				26374ED92886969700EB8932 /* XCRemoteSwiftPackageReference "TweeTextField" */,
 			);
 			productRefGroup = 264B7FE72882A25900CA6848 /* Products */;
 			projectDirPath = "";
@@ -527,6 +531,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		26374ED92886969700EB8932 /* XCRemoteSwiftPackageReference "TweeTextField" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/oleghnidets/TweeTextField.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		26DFAA432882E95900ADEEE5 /* XCRemoteSwiftPackageReference "Swiftagram" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sbertix/Swiftagram.git";
@@ -554,6 +566,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		26374EDA2886969700EB8932 /* TweeTextField */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26374ED92886969700EB8932 /* XCRemoteSwiftPackageReference "TweeTextField" */;
+			productName = TweeTextField;
+		};
 		26DFAA442882E95900ADEEE5 /* Swiftagram */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 26DFAA432882E95900ADEEE5 /* XCRemoteSwiftPackageReference "Swiftagram" */;

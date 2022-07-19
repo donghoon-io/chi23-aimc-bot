@@ -1,16 +1,22 @@
 PODS:
+  - Alamofire (5.5.0)
   - ANLoader (2.0.0)
   - IQKeyboardManagerSwift (6.5.9)
+  - SwiftyJSON (5.0.1)
   - TagListView (1.4.1)
 
 DEPENDENCIES:
+  - Alamofire
   - ANLoader (from `https://github.com/ANSCoder/ANLoader.git`)
   - IQKeyboardManagerSwift
+  - SwiftyJSON
   - TagListView (~> 1.0)
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - IQKeyboardManagerSwift
+    - SwiftyJSON
     - TagListView
 
 EXTERNAL SOURCES:
@@ -23,10 +29,12 @@ CHECKOUT OPTIONS:
     :git: https://github.com/ANSCoder/ANLoader.git
 
 SPEC CHECKSUMS:
+  Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
   ANLoader: 25f4ed93f5d13678eb72a38c2f674acfcaba8205
   IQKeyboardManagerSwift: 6e839c575c4aa1078d58a596e41244e77abe918f
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   TagListView: a1c236d17960a0cf64156725a76ce6d73ebce2be
 
-PODFILE CHECKSUM: 50c31e950476b862c52b9d4929c7e7bd9764a9f8
+PODFILE CHECKSUM: afb7ad8cf2e8a2fd54d328befec8ed4f1b8faa57
 
 COCOAPODS: 1.11.2

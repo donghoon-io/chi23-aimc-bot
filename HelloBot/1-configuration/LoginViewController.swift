@@ -38,7 +38,8 @@ class LoginViewController: UIViewController {
                              client: client) { self.webView = $0 }
             .authenticate { [weak self] in
                 switch $0 {
-                case .failure(let error): print(error.localizedDescription)
+                case .failure(let error):
+                    print(error.localizedDescription)
                 case .success(let secret):
                     print("success")
                     self?.delegate?.pass(id: secret.identifier, sec: secret)

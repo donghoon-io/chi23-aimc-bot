@@ -260,6 +260,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="YK6-wW-MvF"/>
                     <connections>
+                        <outlet property="loginButton" destination="h0p-Vi-gzu" id="bnt-0H-Uuj"/>
                         <segue destination="gnV-Sd-NEV" kind="show" identifier="goMatching" id="hvl-aF-8CI"/>
                     </connections>
                 </viewController>

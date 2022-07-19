@@ -25,13 +25,15 @@ class TopicMatchingViewController: UIViewController, TagListViewDelegate {
     var identifier: String?
     var secret: Secret?
     
-    var themes = ["가","나","다","라"]// [String]()
+    var themes = [String]()
     var selectedThemes = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(captions)
         print(images)
+        print(identifier)
         
         tagListView.delegate = self
         setTagListView()

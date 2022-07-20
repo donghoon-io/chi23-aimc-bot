@@ -2,6 +2,21 @@ PODS:
   - Alamofire (5.5.0)
   - ANLoader (2.0.0)
   - IQKeyboardManagerSwift (6.5.9)
+  - PINCache (3.0.3):
+    - PINCache/Arc-exception-safe (= 3.0.3)
+    - PINCache/Core (= 3.0.3)
+  - PINCache/Arc-exception-safe (3.0.3):
+    - PINCache/Core
+  - PINCache/Core (3.0.3):
+    - PINOperation (~> 1.2.1)
+  - PINOperation (1.2.1)
+  - PINRemoteImage (3.0.3):
+    - PINRemoteImage/PINCache (= 3.0.3)
+  - PINRemoteImage/Core (3.0.3):
+    - PINOperation
+  - PINRemoteImage/PINCache (3.0.3):
+    - PINCache (~> 3.0.3)
+    - PINRemoteImage/Core
   - SwiftyJSON (5.0.1)
   - TagListView (1.4.1)
 
@@ -9,6 +24,7 @@ DEPENDENCIES:
   - Alamofire
   - ANLoader (from `https://github.com/ANSCoder/ANLoader.git`)
   - IQKeyboardManagerSwift
+  - PINRemoteImage
   - SwiftyJSON
   - TagListView (~> 1.0)
 
@@ -16,6 +32,9 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - IQKeyboardManagerSwift
+    - PINCache
+    - PINOperation
+    - PINRemoteImage
     - SwiftyJSON
     - TagListView
 
@@ -32,9 +51,12 @@ SPEC CHECKSUMS:
   Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
   ANLoader: 25f4ed93f5d13678eb72a38c2f674acfcaba8205
   IQKeyboardManagerSwift: 6e839c575c4aa1078d58a596e41244e77abe918f
+  PINCache: 7a8fc1a691173d21dbddbf86cd515de6efa55086
+  PINOperation: 00c935935f1e8cf0d1e2d6b542e75b88fc3e5e20
+  PINRemoteImage: f1295b29f8c5e640e25335a1b2bd9d805171bd01
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   TagListView: a1c236d17960a0cf64156725a76ce6d73ebce2be
 
-PODFILE CHECKSUM: afb7ad8cf2e8a2fd54d328befec8ed4f1b8faa57
+PODFILE CHECKSUM: 1165dd3ed81b0dd4dfd08ee15e8d3b11de45447a
 
 COCOAPODS: 1.11.2

@@ -12,5 +12,5 @@ target 'HelloBot' do
   pod 'TagListView', '~> 1.0'
   pod 'Alamofire'
   pod 'SwiftyJSON'
-
+  pod 'PINRemoteImage'
 end

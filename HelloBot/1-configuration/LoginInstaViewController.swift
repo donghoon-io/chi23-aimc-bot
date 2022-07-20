@@ -74,7 +74,7 @@ class LoginInstaViewController: UIViewController, isAbleToReceiveData {
                     return
                 } else {
                     ANLoader.hide()
-                    ANLoader.showLoading("상대방과의 공통된 관심사 계산 중...", disableUI: true)
+                    ANLoader.showLoading("상대방과의 공통된\n관심사 계산 중...", disableUI: true)
                     
                     let counterpartID = Int(experimentID)! % 2 == 0 ? String(Int(experimentID)!+1) : String(Int(experimentID)!-1)
                     self.db.collection("user_data").document(counterpartID).getDocument { (snapshot, error) in

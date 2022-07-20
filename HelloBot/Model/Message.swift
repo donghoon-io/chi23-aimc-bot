@@ -15,6 +15,7 @@ struct Message {
     var created: Timestamp
     var senderID: String
     var senderName: String
+    var url: String?
     
     var dictionary: [String: Any] {
         
@@ -23,7 +24,9 @@ struct Message {
             "content": content,
             "created": created,
             "senderID": senderID,
-            "senderName":senderName]
+            "senderName": senderName,
+            "url": url
+        ]
         
     }
 }
@@ -32,14 +35,17 @@ extension Message {
     init?(dictionary: [String: Any]) {
         
         guard let id = dictionary["id"] as? String,
-            let content = dictionary["content"] as? String,
-            let created = dictionary["created"] as? Timestamp,
-            let senderID = dictionary["senderID"] as? String,
-            let senderName = dictionary["senderName"] as? String
-            else {return nil}
+              let content = dictionary["content"] as? String,
+              let created = dictionary["created"] as? Timestamp,
+              let senderID = dictionary["senderID"] as? String,
+              let senderName = dictionary["senderName"] as? String
+        else {return nil}
         
-        self.init(id: id, content: content, created: created, senderID: senderID, senderName:senderName)
-        
+        if let url = dictionary["url"] as? String {
+            self.init(id: id, content: content, created: created, senderID: senderID, senderName:senderName, url: url)
+        } else {
+            self.init(id: id, content: content, created: created, senderID: senderID, senderName:senderName)
+        }
     }
 }
 
@@ -58,6 +64,24 @@ extension Message: MessageType {
     }
     
     var kind: MessageKind {
-        return .text(content)
+        if let url = url {
+            let mediaItem = ImageMediaItem(url: URL(string: url))
+            return .photo(mediaItem)
+        } else {
+            return .text(content)
+        }
     }
+}
+
+struct ImageMediaItem: MediaItem {
+  var url: URL?
+  var image: UIImage?
+  var placeholderImage: UIImage
+  var size: CGSize
+
+  init(url: URL?) {
+    self.url = url
+    self.size = CGSize(width: 240, height: 240)
+    self.placeholderImage = UIImage()
+  }
 }

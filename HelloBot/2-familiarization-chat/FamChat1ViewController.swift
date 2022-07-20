@@ -15,6 +15,7 @@ import ComposableRequest
 import ComposableRequestCrypto
 import Swiftagram
 import SwiftagramCrypto
+import PINRemoteImage
 
 class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDelegate, MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDelegate {
     
@@ -29,8 +30,11 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
     
     var user2Name = "대화방"
     var user2ImgUrl: String?
-    var user2UID = String(Int(experimentID)! % 2 == 0 ? Int(experimentID)!+1 : Int(experimentID)!-1)
+    var user2ID = String(Int(experimentID)! % 2 == 0 ? Int(experimentID)!+1 : Int(experimentID)!-1)
     var botID = "bot"
+    
+    var secretBotID = "secretBot" + experimentID
+    var counterSecretBotID = "secretBot" + String(Int(experimentID)! % 2 == 0 ? String(Int(experimentID)!+1) : String(Int(experimentID)!-1))
     
     var isLeader = false
     
@@ -141,7 +145,18 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
         messageInputBar.inputTextView.placeholder = "메시지를 입력하세요"
         messageInputBar.sendButton.setTitle("전송", for: .normal)
         
+        let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout
+        layout?.setMessageIncomingAccessoryViewSize(CGSize(width: 30, height: 30))
+        layout?.setMessageIncomingAccessoryViewPadding(HorizontalEdgeInsets(left: 8, right: 0))
+        layout?.setMessageIncomingAccessoryViewPosition(.messageBottom)
+        layout?.setMessageOutgoingAccessoryViewSize(CGSize(width: 30, height: 30))
+        layout?.setMessageOutgoingAccessoryViewPadding(HorizontalEdgeInsets(left: 0, right: 8))
+        
         loadChat()
+    }
+    
+    @objc func click() {
+        self.sendImageMessage(image: "https://scontent-ssn1-1.cdninstagram.com/v/t51.2885-15/116672160_794831917720770_6108094005385287376_n.jpg?stp=dst-jpg_e35_s1080x1080&_nc_ht=scontent-ssn1-1.cdninstagram.com&_nc_cat=106&_nc_ohc=AFe1ZHyoDTMAX_vEGeS&edm=ABmJApABAAAA&ccb=7-5&ig_cache_key=MjM2NzA1MTcyMDY2MjM3MzQ2Mw%3D%3D.2-ccb7-5&oh=00_AT9hbPTNY3BtCC5JudJ0nVeceSjembHtE126mc9u8W-VKA&oe=62DF5A4F&_nc_sid=6136e7")
     }
     
     // MARK: - Custom messages handlers
@@ -151,7 +166,7 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
     }
     
     func createNewChat() {
-        let users = [experimentID, self.user2UID, self.botID]
+        let users = [experimentID, self.user2ID, self.botID, self.secretBotID, self.counterSecretBotID]
         let data: [String: Any] = [
             "users":users
         ]
@@ -196,7 +211,7 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
                         
                         let chat = Chat(dictionary: doc.data())
                         //Get the chat which has user2 id
-                        if (chat?.users.contains(self.user2UID))! {
+                        if (chat?.users.contains(self.user2ID))! {
                             
                             self.docReference = doc.reference
                             //fetch it's thread collection
@@ -209,8 +224,10 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
                                     } else {
                                         self.messages.removeAll()
                                         for message in threadQuery!.documents {
-                                            let msg = Message(dictionary: message.data())
-                                            self.messages.append(msg!)
+                                            if [experimentID, self.user2ID, self.botID, self.secretBotID].contains(message.data()["senderID"] as! String) {
+                                                let msg = Message(dictionary: message.data())
+                                                self.messages.append(msg!)
+                                            }
                                         }
                                         self.messagesCollectionView.reloadData()
                                         self.messagesCollectionView.scrollToBottom(animated: true)
@@ -242,13 +259,26 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
     
     private func save(_ message: Message) {
         
-        let data: [String: Any] = [
-            "content": message.content,
-            "created": message.created,
-            "id": message.id,
-            "senderID": message.senderID,
-            "senderName": message.senderName
-        ]
+        var data = [String: Any]()
+        
+        if let url = message.url {
+            data = [
+                "content": message.content,
+                "created": message.created,
+                "id": message.id,
+                "senderID": message.senderID,
+                "senderName": message.senderName,
+                "url": url
+            ]
+        } else {
+            data = [
+                "content": message.content,
+                "created": message.created,
+                "id": message.id,
+                "senderID": message.senderID,
+                "senderName": message.senderName
+            ]
+        }
         
         docReference?.collection("thread").addDocument(data: data, completion: { (error) in
             
@@ -266,11 +296,38 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
     
     var isInitial = true
     
-    func sendBotMessage(text: String) {
-        let message = Message(id: UUID().uuidString, content: text, created: Timestamp(), senderID: botID, senderName: "봇")
+    func sendBotImageMessage(image: String) {
+        let message = Message(id: UUID().uuidString, content: "", created: Timestamp(), senderID: secretBotID, senderName: "봇", url: image)
         
         insertNewMessage(message)
         save(message)
+        
+        messagesCollectionView.reloadData()
+        messagesCollectionView.scrollToLastItem(animated: true)
+    }
+    
+    func sendImageMessage(image: String) {
+        let message = Message(id: UUID().uuidString, content: "", created: Timestamp(), senderID: experimentID, senderName: displayName, url: image)
+        
+        insertNewMessage(message)
+        save(message)
+        
+        messagesCollectionView.reloadData()
+        messagesCollectionView.scrollToLastItem(animated: true)
+    }
+    
+    func sendBotMessage(text: String, isPrivate: Bool = false) {
+        if isPrivate {
+            let message = Message(id: UUID().uuidString, content: text, created: Timestamp(), senderID: secretBotID, senderName: "봇")
+            
+            insertNewMessage(message)
+            save(message)
+        } else {
+            let message = Message(id: UUID().uuidString, content: text, created: Timestamp(), senderID: botID, senderName: "봇")
+            
+            insertNewMessage(message)
+            save(message)
+        }
         
         messagesCollectionView.reloadData()
         messagesCollectionView.scrollToLastItem(animated: true)
@@ -281,9 +338,9 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
             if isInitial {
                 isInitial = false
                 DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
-                    self.sendBotMessage(text: "안녕하세요! 저는 오늘 여러분들의 인스타그램 데이터를 기반으로 대화를 도와드릴 블라블라봇이라고 합니다:)")
+                    self.sendBotMessage(text: "(비밀 메시지)\n본 주제와 비슷한 사진을 찾았어요! 보다 더 대화를 구체적으로 하기 위해서 본 사진을 공유해보세요! 아래 이미지의 오른쪽 버튼을 누르면 상대방과 공유됩니다.", isPrivate: true)
                     DispatchQueue.main.asyncAfter(deadline: .now()+2.0) {
-                        self.sendBotMessage(text: "시작하기에 앞서, 두분께서는 먼저 2분간 자기소개를 해주세요!")
+                        self.sendBotImageMessage(image: "https://scontent-ssn1-1.cdninstagram.com/v/t51.2885-15/116672160_794831917720770_6108094005385287376_n.jpg?stp=dst-jpg_e35_s1080x1080&_nc_ht=scontent-ssn1-1.cdninstagram.com&_nc_cat=106&_nc_ohc=AFe1ZHyoDTMAX_vEGeS&edm=ABmJApABAAAA&ccb=7-5&ig_cache_key=MjM2NzA1MTcyMDY2MjM3MzQ2Mw%3D%3D.2-ccb7-5&oh=00_AT9hbPTNY3BtCC5JudJ0nVeceSjembHtE126mc9u8W-VKA&oe=62DF5A4F&_nc_sid=6136e7")
                     }
                 }
             }
@@ -332,14 +389,15 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
         switch message.sender.senderId {
         case experimentID: return .systemBlue
-        case user2UID: return .systemGray5
+        case user2ID: return .systemGray5
+        case secretBotID: return .systemGray3
         default: return .systemGreen
         }
     }
     func textColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
         switch message.sender.senderId {
         case experimentID: return .white
-        case user2UID: return .darkGray
+        case user2ID: return .darkGray
         default: return .white
         }
     }
@@ -348,9 +406,32 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
         
         switch message.sender.senderId {
         case experimentID: avatarView.initials = "나"
-        case user2UID: avatarView.initials = "상대"
+        case user2ID: avatarView.initials = "상대"
         default: avatarView.initials = "봇"
         }
+    }
+    func configureAccessoryView(_ accessoryView: UIView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+        // Cells are reused, so only add a button here once. For real use you would need to
+        // ensure any subviews are removed if not needed
+        
+        
+        accessoryView.subviews.forEach { $0.removeFromSuperview() }
+        accessoryView.backgroundColor = .clear
+        
+        if message.sender.senderId == secretBotID {
+            switch message.kind {
+            case .photo(_):
+                let button = UIButton(type: .contactAdd)
+                button.tintColor = .link
+                accessoryView.addSubview(button)
+                button.frame = accessoryView.bounds
+                button.addTarget(self, action: #selector(click), for: .touchUpInside)
+                accessoryView.layer.cornerRadius = accessoryView.frame.height / 2
+                accessoryView.backgroundColor = .clear
+            default: break
+            }
+        }
+        
     }
     
     func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
@@ -359,5 +440,22 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
         return .bubbleTail(corner, .curved)
         
     }
+    func configureMediaMessageImageView(_ imageView: UIImageView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+        guard let msg = message as? Message, let url = msg.url else { return }
+        imageView.pin_setImage(from: URL(string: url)!)
+    }
     
 }
+extension UIImageView {
+  func load(url: URL) {
+    DispatchQueue.global().async { [weak self] in
+        if let data = try? Data(contentsOf: url) {
+            if let image = UIImage(data: data) {
+                DispatchQueue.main.async {
+                    self?.image = image
+                }
+            }
+        }
+     }
+   }
+ }

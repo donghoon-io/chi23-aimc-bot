@@ -390,7 +390,7 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
         switch message.sender.senderId {
         case experimentID: return .systemBlue
         case user2ID: return .systemGray5
-        case secretBotID: return .systemGray3
+        case secretBotID: return .systemGray
         default: return .systemGreen
         }
     }

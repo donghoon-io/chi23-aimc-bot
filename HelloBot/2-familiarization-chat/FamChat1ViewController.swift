@@ -338,7 +338,7 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
             if isInitial {
                 isInitial = false
                 DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
-                    self.sendBotMessage(text: "(비밀 메시지)\n본 주제와 비슷한 사진을 찾았어요! 보다 더 대화를 구체적으로 하기 위해서 본 사진을 공유해보세요! 아래 이미지의 오른쪽 버튼을 누르면 상대방과 공유됩니다.", isPrivate: true)
+                    self.sendBotMessage(text: "본 주제와 비슷한 사진을 찾았어요! 보다 더 대화를 구체적으로 하기 위해서 본 사진을 공유해보세요! 아래 이미지의 오른쪽 버튼을 누르면 상대방과 공유됩니다.", isPrivate: true)
                     DispatchQueue.main.asyncAfter(deadline: .now()+2.0) {
                         self.sendBotImageMessage(image: "https://scontent-ssn1-1.cdninstagram.com/v/t51.2885-15/116672160_794831917720770_6108094005385287376_n.jpg?stp=dst-jpg_e35_s1080x1080&_nc_ht=scontent-ssn1-1.cdninstagram.com&_nc_cat=106&_nc_ohc=AFe1ZHyoDTMAX_vEGeS&edm=ABmJApABAAAA&ccb=7-5&ig_cache_key=MjM2NzA1MTcyMDY2MjM3MzQ2Mw%3D%3D.2-ccb7-5&oh=00_AT9hbPTNY3BtCC5JudJ0nVeceSjembHtE126mc9u8W-VKA&oe=62DF5A4F&_nc_sid=6136e7")
                     }
@@ -443,6 +443,18 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
     func configureMediaMessageImageView(_ imageView: UIImageView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
         guard let msg = message as? Message, let url = msg.url else { return }
         imageView.pin_setImage(from: URL(string: url)!)
+    }
+    func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+        if message.sender.senderId.contains("secretBot") {
+            return NSAttributedString(string: "비밀 메시지", attributes: [.foregroundColor: UIColor.darkGray, .font: UIFont.systemFont(ofSize: 12, weight: .bold)])
+        }
+        return nil
+    }
+    func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        if message.sender.senderId.contains("secretBot") {
+            return 35
+        }
+        return 0
     }
     
 }

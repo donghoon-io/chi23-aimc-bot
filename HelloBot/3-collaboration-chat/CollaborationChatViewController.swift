@@ -41,7 +41,7 @@ class CollaborationChatViewController: MessagesViewController, InputBarAccessory
     var endNotified = false
     
     @objc func countEnd(){
-        if !endNotified && Date().timeIntervalSince(startTime) > 540 {
+        if !endNotified && Date().timeIntervalSince(startTime) > 300 {
             DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
                 if self.isLeader {
                     self.sendBotMessage(text: "실험이 종료되었습니다. 설문 및 인터뷰 단계로 넘어가도록 하겠습니다. 잠시만 기다려주세요")

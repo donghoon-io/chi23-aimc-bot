@@ -434,10 +434,10 @@
             </objects>
             <point key="canvasLocation" x="3042" y="775"/>
         </scene>
-        <!--View Controller-->
+        <!--Collaboration Ready View Controller-->
         <scene sceneID="CUh-iR-ae5">
             <objects>
-                <viewController id="naE-J0-Sn7" sceneMemberID="viewController">
+                <viewController id="naE-J0-Sn7" customClass="CollaborationReadyViewController" customModule="HelloBot" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lsr-Dy-Qi7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -455,6 +455,9 @@
                                     <fontDescription key="titleFontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="18"/>
                                     <color key="baseForegroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="connectionButtonClicked:" destination="naE-J0-Sn7" eventType="touchUpInside" id="mLi-Qp-4SJ"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2. 상대방과 연결 준비" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lja-v1-Uyw">
                                 <rect key="frame" x="30" y="103" width="354" height="36"/>
@@ -533,6 +536,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3kO-zn-lSx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4706" y="72"/>
+        </scene>
+        <!--Survey Web View Controller-->
+        <scene sceneID="9lo-N0-E2W">
+            <objects>
+                <viewController storyboardIdentifier="SurveyWebViewController" id="ERk-2K-yed" customClass="SurveyWebViewController" customModule="HelloBot" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jYD-5r-QC0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RtS-Yw-cPr">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="uc3-Ri-OlA"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="RtS-Yw-cPr" firstAttribute="leading" secondItem="uc3-Ri-OlA" secondAttribute="leading" id="5Fz-lz-Qyk"/>
+                            <constraint firstItem="uc3-Ri-OlA" firstAttribute="bottom" secondItem="RtS-Yw-cPr" secondAttribute="bottom" id="9EV-OY-Ur7"/>
+                            <constraint firstItem="uc3-Ri-OlA" firstAttribute="trailing" secondItem="RtS-Yw-cPr" secondAttribute="trailing" id="hbm-TR-rVX"/>
+                            <constraint firstItem="RtS-Yw-cPr" firstAttribute="top" secondItem="uc3-Ri-OlA" secondAttribute="top" id="kp2-Mk-XQh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="RtS-Yw-cPr" id="4BP-Zf-Qho"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Jr-lX-XuM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5728" y="72"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

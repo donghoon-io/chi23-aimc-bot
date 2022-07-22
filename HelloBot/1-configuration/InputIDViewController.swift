@@ -16,7 +16,15 @@ class InputIDViewController: UIViewController {
     
     @IBAction func nextButtonClicked(_ sender: UIButton) {
         experimentID = self.idTextField.text ?? ""
-        self.performSegue(withIdentifier: "goInstaLogin", sender: self)
+        switch experimentID.prefix(1) {
+        case "1": // AI
+            self.performSegue(withIdentifier: "goInstaLogin", sender: self)
+        case "2": // Conversation
+            self.performSegue(withIdentifier: "goConversationConnection", sender: self)
+        default: // No conversation
+            self.performSegue(withIdentifier: "goWithoutConversationConnection", sender: self)
+            
+        }
     }
     
     override func viewDidLoad() {

@@ -14,6 +14,9 @@
 		264B7FF12882A25900CA6848 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 264B7FEF2882A25900CA6848 /* Main.storyboard */; };
 		264B7FF32882A26300CA6848 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 264B7FF22882A26300CA6848 /* Assets.xcassets */; };
 		264B7FF62882A26300CA6848 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 264B7FF42882A26300CA6848 /* LaunchScreen.storyboard */; };
+		26810531288B1FED007BB7A6 /* FamChat2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26810530288B1FED007BB7A6 /* FamChat2ViewController.swift */; };
+		26810534288B246C007BB7A6 /* CollaborationChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26810533288B246C007BB7A6 /* CollaborationChatViewController.swift */; };
+		26810537288B25CF007BB7A6 /* SurveyWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26810536288B25CF007BB7A6 /* SurveyWebViewController.swift */; };
 		26C263E52883EC86005FCB68 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C263E22883EC86005FCB68 /* Chat.swift */; };
 		26C263E62883EC86005FCB68 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C263E32883EC86005FCB68 /* Message.swift */; };
 		26C263E72883EC86005FCB68 /* DataStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C263E42883EC86005FCB68 /* DataStructure.swift */; };
@@ -42,6 +45,9 @@
 		264B7FF22882A26300CA6848 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		264B7FF52882A26300CA6848 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		264B7FF72882A26300CA6848 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26810530288B1FED007BB7A6 /* FamChat2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamChat2ViewController.swift; sourceTree = "<group>"; };
+		26810533288B246C007BB7A6 /* CollaborationChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollaborationChatViewController.swift; sourceTree = "<group>"; };
+		26810536288B25CF007BB7A6 /* SurveyWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyWebViewController.swift; sourceTree = "<group>"; };
 		26C263E22883EC86005FCB68 /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		26C263E32883EC86005FCB68 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		26C263E42883EC86005FCB68 /* DataStructure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStructure.swift; sourceTree = "<group>"; };
@@ -98,6 +104,8 @@
 			isa = PBXGroup;
 			children = (
 				26DFAA502883014A00ADEEE5 /* GoogleService-Info.plist */,
+				26810535288B25C2007BB7A6 /* 4-survey */,
+				26810532288B245B007BB7A6 /* 3-collaboration-chat */,
 				26C263E12883EC86005FCB68 /* Model */,
 				26DFAA4D2882F51A00ADEEE5 /* 2-familiarization-chat */,
 				26E6726C2882DAE300DFC66F /* 0-extension */,
@@ -111,6 +119,22 @@
 				264B7FF72882A26300CA6848 /* Info.plist */,
 			);
 			path = HelloBot;
+			sourceTree = "<group>";
+		};
+		26810532288B245B007BB7A6 /* 3-collaboration-chat */ = {
+			isa = PBXGroup;
+			children = (
+				26810533288B246C007BB7A6 /* CollaborationChatViewController.swift */,
+			);
+			path = "3-collaboration-chat";
+			sourceTree = "<group>";
+		};
+		26810535288B25C2007BB7A6 /* 4-survey */ = {
+			isa = PBXGroup;
+			children = (
+				26810536288B25CF007BB7A6 /* SurveyWebViewController.swift */,
+			);
+			path = "4-survey";
 			sourceTree = "<group>";
 		};
 		26C263E12883EC86005FCB68 /* Model */ = {
@@ -127,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				26DFAA4E2882F5B600ADEEE5 /* FamChat1ViewController.swift */,
+				26810530288B1FED007BB7A6 /* FamChat2ViewController.swift */,
 			);
 			path = "2-familiarization-chat";
 			sourceTree = "<group>";
@@ -300,9 +325,12 @@
 			files = (
 				26DFAA422882E30800ADEEE5 /* LoginViewController.swift in Sources */,
 				264B7FEE2882A25900CA6848 /* ViewController.swift in Sources */,
+				26810534288B246C007BB7A6 /* CollaborationChatViewController.swift in Sources */,
 				26DFAA492882F29100ADEEE5 /* TopicMatchingViewController.swift in Sources */,
 				26C263E52883EC86005FCB68 /* Chat.swift in Sources */,
+				26810531288B1FED007BB7A6 /* FamChat2ViewController.swift in Sources */,
 				26E672692882DA7500DFC66F /* InputIDViewController.swift in Sources */,
+				26810537288B25CF007BB7A6 /* SurveyWebViewController.swift in Sources */,
 				26E6726B2882DAB000DFC66F /* LoginInstaViewController.swift in Sources */,
 				26C263E62883EC86005FCB68 /* Message.swift in Sources */,
 				26E6726E2882DAF400DFC66F /* Extension.swift in Sources */,

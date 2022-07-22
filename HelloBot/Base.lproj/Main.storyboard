@@ -192,6 +192,8 @@
                         <outlet property="idTextField" destination="FtP-Lj-SQh" id="0zQ-cI-Q3b"/>
                         <outlet property="nextButton" destination="5ue-vY-sm4" id="XVh-7f-GsI"/>
                         <segue destination="Pdl-do-4tT" kind="show" identifier="goInstaLogin" id="CFt-OY-95A"/>
+                        <segue destination="6Xv-98-pYb" kind="show" identifier="goConversationConnection" id="xu5-GK-erl"/>
+                        <segue destination="naE-J0-Sn7" kind="show" identifier="goWithoutConversationConnection" id="Gdz-Fj-fWb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G9v-hN-ufg" sceneMemberID="firstResponder"/>
@@ -359,12 +361,183 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="RPH-Tb-LXY"/>
+                    <connections>
+                        <segue destination="Ohi-AM-r2G" kind="show" identifier="goCollaboration1" id="CB7-6W-NpW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1R6-0O-hmz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3848" y="72"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="1lx-KK-xWc">
+            <objects>
+                <viewController id="6Xv-98-pYb" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cRb-dw-ul7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Epe-OS-Ln7">
+                                <rect key="frame" x="30" y="793" width="354" height="54"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Epe-OS-Ln7" secondAttribute="height" multiplier="72:11" id="Ldf-N8-8vF"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="접속">
+                                    <backgroundConfiguration key="background" cornerRadius="15">
+                                        <color key="backgroundColor" white="0.88" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </backgroundConfiguration>
+                                    <fontDescription key="titleFontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="18"/>
+                                    <color key="baseForegroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <segue destination="s7q-GU-Zc4" kind="show" id="3QT-Tq-B82"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2. 상대방과 연결 준비" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4mJ-wx-kQO">
+                                <rect key="frame" x="30" y="103" width="354" height="36"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="30"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mD3-KV-ZCA">
+                                <rect key="frame" x="30" y="169" width="354" height="106"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="상대방과 대화를 시작하시려면 아래 버튼을 눌러서 채팅 창에 접속해주세요!  본인과 상대방이 동시에 접속이 확인되면 대화가 시작됩니다.">
+                                        <attributes>
+                                            <color key="NSColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="16" name="AppleSDGothicNeo-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.1000000000000001" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="bja-Um-UYs"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="4mJ-wx-kQO" secondAttribute="trailing" constant="30" id="50G-gQ-zHS"/>
+                            <constraint firstItem="4mJ-wx-kQO" firstAttribute="top" secondItem="bja-Um-UYs" secondAttribute="top" constant="15" id="9qO-5m-DZG"/>
+                            <constraint firstItem="bja-Um-UYs" firstAttribute="trailing" secondItem="Epe-OS-Ln7" secondAttribute="trailing" constant="30" id="R1V-2y-Vbn"/>
+                            <constraint firstItem="mD3-KV-ZCA" firstAttribute="trailing" secondItem="4mJ-wx-kQO" secondAttribute="trailing" id="RSh-AJ-k30"/>
+                            <constraint firstItem="4mJ-wx-kQO" firstAttribute="leading" secondItem="bja-Um-UYs" secondAttribute="leading" constant="30" id="Z6h-WV-MeK"/>
+                            <constraint firstItem="Epe-OS-Ln7" firstAttribute="leading" secondItem="bja-Um-UYs" secondAttribute="leading" constant="30" id="bBS-HF-3ql"/>
+                            <constraint firstItem="mD3-KV-ZCA" firstAttribute="leading" secondItem="4mJ-wx-kQO" secondAttribute="leading" id="h4T-fC-5zO"/>
+                            <constraint firstItem="bja-Um-UYs" firstAttribute="bottom" secondItem="Epe-OS-Ln7" secondAttribute="bottom" constant="15" id="lQa-gJ-J7n"/>
+                            <constraint firstItem="mD3-KV-ZCA" firstAttribute="top" secondItem="4mJ-wx-kQO" secondAttribute="bottom" constant="30" id="saa-ZU-5Jn"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="pmO-YR-YxG"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aAe-i4-ehg" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3042" y="775"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="CUh-iR-ae5">
+            <objects>
+                <viewController id="naE-J0-Sn7" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lsr-Dy-Qi7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hVR-vF-GTQ">
+                                <rect key="frame" x="30" y="793" width="354" height="54"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="hVR-vF-GTQ" secondAttribute="height" multiplier="72:11" id="Qus-RS-hBz"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="접속">
+                                    <backgroundConfiguration key="background" cornerRadius="15">
+                                        <color key="backgroundColor" white="0.88" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </backgroundConfiguration>
+                                    <fontDescription key="titleFontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="18"/>
+                                    <color key="baseForegroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </buttonConfiguration>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2. 상대방과 연결 준비" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lja-v1-Uyw">
+                                <rect key="frame" x="30" y="103" width="354" height="36"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="30"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hhj-zB-ob1">
+                                <rect key="frame" x="30" y="169" width="354" height="106"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="상대방과 협업을 시작하시려면 아래 버튼을 눌러서 채팅 창에 접속해주세요!  본인과 상대방이 동시에 접속이 확인되면 대화가 시작됩니다.">
+                                        <attributes>
+                                            <color key="NSColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="16" name="AppleSDGothicNeo-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.1000000000000001" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="XZi-ey-2GO"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="XZi-ey-2GO" firstAttribute="bottom" secondItem="hVR-vF-GTQ" secondAttribute="bottom" constant="15" id="0RN-ae-wXv"/>
+                            <constraint firstItem="XZi-ey-2GO" firstAttribute="trailing" secondItem="hVR-vF-GTQ" secondAttribute="trailing" constant="30" id="FDb-6k-n8Q"/>
+                            <constraint firstAttribute="trailing" secondItem="Lja-v1-Uyw" secondAttribute="trailing" constant="30" id="KAa-M7-x99"/>
+                            <constraint firstItem="hhj-zB-ob1" firstAttribute="leading" secondItem="Lja-v1-Uyw" secondAttribute="leading" id="Ocb-DU-zkt"/>
+                            <constraint firstItem="hhj-zB-ob1" firstAttribute="trailing" secondItem="Lja-v1-Uyw" secondAttribute="trailing" id="QhS-y8-w2i"/>
+                            <constraint firstItem="Lja-v1-Uyw" firstAttribute="top" secondItem="XZi-ey-2GO" secondAttribute="top" constant="15" id="YOJ-qa-7PS"/>
+                            <constraint firstItem="Lja-v1-Uyw" firstAttribute="leading" secondItem="XZi-ey-2GO" secondAttribute="leading" constant="30" id="eNx-sv-wlw"/>
+                            <constraint firstItem="hVR-vF-GTQ" firstAttribute="leading" secondItem="XZi-ey-2GO" secondAttribute="leading" constant="30" id="vSx-F6-NK6"/>
+                            <constraint firstItem="hhj-zB-ob1" firstAttribute="top" secondItem="Lja-v1-Uyw" secondAttribute="bottom" constant="30" id="ygd-xP-4Bt"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="V8K-kk-ynq"/>
+                    <connections>
+                        <segue destination="Ohi-AM-r2G" kind="show" identifier="goCollaboration3" id="cQF-f0-cmc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NU3-ps-mhQ" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3848" y="1482"/>
+        </scene>
+        <!--Fam Chat2 View Controller-->
+        <scene sceneID="Xy2-xS-DUl">
+            <objects>
+                <viewController id="s7q-GU-Zc4" customClass="FamChat2ViewController" customModule="HelloBot" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="j8e-ew-GrI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="oa3-Yu-Weq"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="yHX-j3-9mr"/>
+                    <connections>
+                        <segue destination="Ohi-AM-r2G" kind="show" identifier="goCollaboration2" id="vbc-QR-wtA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xLC-BN-q50" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3848" y="775"/>
+        </scene>
+        <!--Collaboration Chat View Controller-->
+        <scene sceneID="oQJ-hD-DiU">
+            <objects>
+                <viewController id="Ohi-AM-r2G" customClass="CollaborationChatViewController" customModule="HelloBot" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mez-rZ-PZx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="rmo-zj-oEc"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="3UQ-Zp-DEh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3kO-zn-lSx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4706" y="72"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="cQF-f0-cmc"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
     <resources>
         <systemColor name="systemBackgroundColor">

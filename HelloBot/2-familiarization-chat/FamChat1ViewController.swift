@@ -55,9 +55,9 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
             DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
                 let lastStr = UnicodeScalar(String(self.themesToDiscuss[0].last ?? "이"))?.value ?? 28
                 if (lastStr-44032) % 28 == 0 {
-                    self.sendBotMessage(text: "서로 인사는 즐겁게 나누셨나요? 그럼, 지금부터 5분간 '\(self.themesToDiscuss[0])'라는 토픽으로 이야기를 시작해보세요.")
+                    self.sendBotMessage(text: "서로 인사는 즐겁게 나누셨나요? 그럼, 지금부터 5분간 두 분께서 공통되게 관심을 가질만한 '\(self.themesToDiscuss[0])'라는 토픽으로 이야기를 시작해보세요.")
                 } else {
-                    self.sendBotMessage(text: "서로 인사는 즐겁게 나누셨나요? 그럼, 지금부터 5분간 '\(self.themesToDiscuss[0])'이라는 토픽으로 이야기를 시작해보세요.")
+                    self.sendBotMessage(text: "서로 인사는 즐겁게 나누셨나요? 그럼, 지금부터 5분간 두 분께서 공통되게 관심을 가질만한 '\(self.themesToDiscuss[0])'이라는 토픽으로 이야기를 시작해보세요.")
                 }
             }
         } else if isLeader && Date().timeIntervalSince(lastDate) > 300.0 && currentOrderIndex == 1 {
@@ -313,9 +313,16 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
             if isInitial {
                 isInitial = false
                 DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
-                    self.sendBotMessage(text: "본 주제와 비슷한 사진을 찾았어요! 보다 더 대화를 구체적으로 나누기 위해 본 사진을 공유해보세요!\n아래 이미지의 오른쪽 버튼을 누르면 상대방과 공유됩니다.", isPrivate: true)
+                    /*
+                     self.sendBotMessage(text: "본 주제와 비슷한 사진을 찾았어요! 보다 더 대화를 구체적으로 나누기 위해 본 사진을 공유해보세요!\n아래 이미지의 오른쪽 버튼을 누르면 상대방과 공유됩니다.", isPrivate: true)
+                     DispatchQueue.main.asyncAfter(deadline: .now()+2.0) {
+                     self.sendBotImageMessage(image: "https://scontent-ssn1-1.cdninstagram.com/v/t51.2885-15/116672160_794831917720770_6108094005385287376_n.jpg?stp=dst-jpg_e35_s1080x1080&_nc_ht=scontent-ssn1-1.cdninstagram.com&_nc_cat=106&_nc_ohc=AFe1ZHyoDTMAX_vEGeS&edm=ABmJApABAAAA&ccb=7-5&ig_cache_key=MjM2NzA1MTcyMDY2MjM3MzQ2Mw%3D%3D.2-ccb7-5&oh=00_AT9hbPTNY3BtCC5JudJ0nVeceSjembHtE126mc9u8W-VKA&oe=62DF5A4F&_nc_sid=6136e7")
+                     }
+                     */
+                    self.sendBotMessage(text: "안녕하세요, 저는 여러분들의 인스타그램 데이터를 바탕으로 친밀해지도록 돕는 헬로봇이예요.")
+                    
                     DispatchQueue.main.asyncAfter(deadline: .now()+2.0) {
-                        self.sendBotImageMessage(image: "https://scontent-ssn1-1.cdninstagram.com/v/t51.2885-15/116672160_794831917720770_6108094005385287376_n.jpg?stp=dst-jpg_e35_s1080x1080&_nc_ht=scontent-ssn1-1.cdninstagram.com&_nc_cat=106&_nc_ohc=AFe1ZHyoDTMAX_vEGeS&edm=ABmJApABAAAA&ccb=7-5&ig_cache_key=MjM2NzA1MTcyMDY2MjM3MzQ2Mw%3D%3D.2-ccb7-5&oh=00_AT9hbPTNY3BtCC5JudJ0nVeceSjembHtE126mc9u8W-VKA&oe=62DF5A4F&_nc_sid=6136e7")
+                        self.sendBotMessage(text: "먼저 시작하기에 앞서, 두분께서는 서로 인사를 나누며 자기소개를 해볼까요?")
                     }
                 }
             }
@@ -433,15 +440,15 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
     }
 }
 extension UIImageView {
-  func load(url: URL) {
-    DispatchQueue.global().async { [weak self] in
-        if let data = try? Data(contentsOf: url) {
-            if let image = UIImage(data: data) {
-                DispatchQueue.main.async {
-                    self?.image = image
+    func load(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
                 }
             }
         }
-     }
-   }
- }
+    }
+}

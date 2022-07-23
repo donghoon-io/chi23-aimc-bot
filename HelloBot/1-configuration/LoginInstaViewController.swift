@@ -36,6 +36,7 @@ class LoginInstaViewController: UIViewController, isAbleToReceiveData {
     var comments = [String]()
     
     var themes = [String]()
+    var organized_post_images = [String]()
     var finalThemes = [String]()
     
     @IBOutlet weak var loginButton: UIButton!
@@ -84,7 +85,6 @@ class LoginInstaViewController: UIViewController, isAbleToReceiveData {
                             self.showAlert(error.localizedDescription)
                         } else {
                             if let data = snapshot?.get("captions") as? [String] {
-                                print("counter: \(data)")
                                 self.postsCounter = data
                                 var parameters = [String:[String]]()
                                 if Int(experimentID)! % 2 == 0 {
@@ -99,9 +99,13 @@ class LoginInstaViewController: UIViewController, isAbleToReceiveData {
                                     ANLoader.hide()
                                     switch response.result {
                                     case .success(let data):
-                                        if let themes = JSON(data)["keywords"].arrayObject as? [String] {
-                                            print(themes)
-                                            self.themes = themes
+                                        if let themes = JSON(data)["keywords"].arrayObject as? [[String]] {
+                                            self.themes = themes.compactMap({ str_data in
+                                                return str_data[2]
+                                            })
+                                            self.organized_post_images = themes.compactMap({ str_data in
+                                                self.post_images[(Int(experimentID)! % 2 == 0 ? Int(str_data[1]) : Int(str_data[0]))!]
+                                            })
                                             
                                             //success
                                             self.loginButton.enable()
@@ -136,9 +140,13 @@ class LoginInstaViewController: UIViewController, isAbleToReceiveData {
                                                 ANLoader.hide()
                                                 switch response.result {
                                                 case .success(let data):
-                                                    if let themes = JSON(data)["keywords"].arrayObject as? [String] {
-                                                        print(themes)
-                                                        self.themes = themes
+                                                    if let themes = JSON(data)["keywords"].arrayObject as? [[String]] {
+                                                        self.themes = themes.compactMap({ str_data in
+                                                            return str_data[2]
+                                                        })
+                                                        self.organized_post_images = themes.compactMap({ str_data in
+                                                            self.post_images[(Int(experimentID)! % 2 == 0 ? Int(str_data[1]) : Int(str_data[0]))!]
+                                                        })
                                                         
                                                         //success
                                                         self.loginButton.enable()
@@ -156,8 +164,6 @@ class LoginInstaViewController: UIViewController, isAbleToReceiveData {
                             }
                         }
                     }
-                    
-                    //self.performSegue(withIdentifier: "goMatching", sender: self)
                 }
             }
         } onChange: { (result) in
@@ -171,17 +177,28 @@ class LoginInstaViewController: UIViewController, isAbleToReceiveData {
                         switch media.content {
                         case .picture(let pic):
                             if let imgs = pic.images, let url = imgs[0].url {
-                                print(url.absoluteString)
                                 return url.absoluteString
+                            }
+                        case .album(let alb):
+                            let head_img = alb[0]
+                            switch head_img {
+                            case .picture(let pic):
+                                if let imgs = pic.images, let url = imgs[0].url {
+                                    return url.absoluteString
+                                }
+                            case .video(let vid):
+                                if let imgs = vid.images, let url = imgs[0].url {
+                                    return url.absoluteString
+                                }
+                            default:
+                                return media.code ?? ""
                             }
                         case .video(let vid):
                             if let imgs = vid.images, let url = imgs[0].url {
-                                print(url.absoluteString)
                                 return url.absoluteString
                             }
                         default: print("not supported");
                         }
-
                         return media.code ?? ""
                     })
                 }
@@ -194,11 +211,6 @@ class LoginInstaViewController: UIViewController, isAbleToReceiveData {
                 return
             }
         }.resume()
-    }
-    func showAlert(_ err: String) {
-        let alertController = UIAlertController(title: err, message: "실험 주관인에게 문의하시오", preferredStyle: .actionSheet)
-        alertController.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goMatching" {

@@ -318,7 +318,7 @@
                                     <color key="baseForegroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="wEI-yc-9cO" kind="show" identifier="goChatting1" id="gou-QQ-7tY"/>
+                                    <action selector="startButtonClicked:" destination="gnV-Sd-NEV" eventType="touchUpInside" id="Iou-VP-Hp9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -344,6 +344,7 @@
                         <outlet property="startButton" destination="FhE-XW-Dli" id="srD-ap-hRK"/>
                         <outlet property="tagHeight" destination="yRQ-ot-l98" id="pVQ-Ab-X3z"/>
                         <outlet property="tagListView" destination="3tE-e7-4l0" id="hGb-hq-C5M"/>
+                        <segue destination="wEI-yc-9cO" kind="show" identifier="goChatting1" id="ZyX-BD-JG7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H5N-4f-nqj" sceneMemberID="firstResponder"/>
@@ -353,7 +354,7 @@
         <!--Fam Chat1 View Controller-->
         <scene sceneID="Mse-eq-cd6">
             <objects>
-                <viewController id="wEI-yc-9cO" customClass="FamChat1ViewController" customModule="HelloBot" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FamChat1ViewController" id="wEI-yc-9cO" customClass="FamChat1ViewController" customModule="HelloBot" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hrw-TD-jKf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -573,7 +574,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="cQF-f0-cmc"/>
+        <segue reference="CB7-6W-NpW"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
     <resources>

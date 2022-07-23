@@ -74,3 +74,11 @@ extension String {
         return self.range(of: regex, options: .regularExpression, range: nil, locale: nil) != nil
     }
 }
+
+extension UIViewController {
+    func showAlert(_ err: String) {
+        let alertController = UIAlertController(title: err, message: "실험 주관인에게 문의하시오", preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
+}

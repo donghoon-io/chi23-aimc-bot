@@ -36,6 +36,7 @@ class TopicMatchingViewController: UIViewController, TagListViewDelegate {
     
     var finalImages = [String]()
     var finalThemes = [String]()
+    var finalCaptions = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +72,9 @@ class TopicMatchingViewController: UIViewController, TagListViewDelegate {
                                     return self.images[self.themes.firstIndex(of: key)!]
                                 })
                                 print(self.finalImages)
+                                self.finalCaptions = self.finalThemes.map({ key in
+                                    return self.captions[self.themes.firstIndex(of: key)!]
+                                })
                                 self.goSegue("goChatting1")
                             } else {
                                 counterDocument.addSnapshotListener { (snapshot2, error2) in
@@ -84,6 +88,9 @@ class TopicMatchingViewController: UIViewController, TagListViewDelegate {
                                                 self.finalThemes = selectedThemes1
                                                 self.finalImages = self.finalThemes.map({ key in
                                                     return self.images[self.themes.firstIndex(of: key)!]
+                                                })
+                                                self.finalCaptions = self.finalThemes.map({ key in
+                                                    return self.captions[self.themes.firstIndex(of: key)!]
                                                 })
                                                 print(self.finalImages)
                                                 self.isDone = true
@@ -118,6 +125,9 @@ class TopicMatchingViewController: UIViewController, TagListViewDelegate {
                                         self.finalImages = self.finalThemes.map({ key in
                                             return self.images[self.themes.firstIndex(of: key)!]
                                         })
+                                        self.finalCaptions = self.finalThemes.map({ key in
+                                            return self.captions[self.themes.firstIndex(of: key)!]
+                                        })
                                         self.db.collection("user_data").document(experimentID).setData(["final_topics": self.finalThemes], merge: true) { errrrr in
                                             if let err1rrr = errrrr {
                                                 self.showError(error: err1rrr, button: self.startButton)
@@ -137,6 +147,9 @@ class TopicMatchingViewController: UIViewController, TagListViewDelegate {
                                                         self.finalThemes = self.handleThemes(me: self.selectedThemes, counter: counterTheme1)
                                                         self.finalImages = self.finalThemes.map({ key in
                                                             return self.images[self.themes.firstIndex(of: key)!]
+                                                        })
+                                                        self.finalCaptions = self.finalThemes.map({ key in
+                                                            return self.captions[self.themes.firstIndex(of: key)!]
                                                         })
                                                         self.db.collection("user_data").document(experimentID).setData(["final_topics": self.finalThemes], merge: true) { errrrr in
                                                             if let err1rrr = errrrr {
@@ -214,8 +227,8 @@ class TopicMatchingViewController: UIViewController, TagListViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goChatting1" {
             if let nextViewController = segue.destination as? FamChat1ViewController {
-                nextViewController.images = self.images
-                nextViewController.captions = self.captions
+                nextViewController.images = self.finalImages
+                nextViewController.captions = self.finalCaptions
                 nextViewController.identifier = self.identifier
                 nextViewController.secret = self.secret
                 nextViewController.themesToDiscuss = self.finalThemes

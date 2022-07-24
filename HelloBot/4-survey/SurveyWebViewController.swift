@@ -69,17 +69,17 @@ extension SurveyWebViewController: WKNavigationDelegate {
                            self.progressView.alpha = 1.0
         })
     }
-
+    
     func webView(_: WKWebView, didFinish _: WKNavigation!) {
         UIView.animate(withDuration: 0.33,
                        animations: {
-                           self.progressView.alpha = 0.0
-                       },
+            self.progressView.alpha = 0.0
+        },
                        completion: { isFinished in
-                           // Update `isHidden` flag accordingly:
-                           //  - set to `true` in case animation was completly finished.
-                           //  - set to `false` in case animation was interrupted, e.g. due to starting of another animation.
-                           self.progressView.isHidden = isFinished
+            // Update `isHidden` flag accordingly:
+            //  - set to `true` in case animation was completly finished.
+            //  - set to `false` in case animation was interrupted, e.g. due to starting of another animation.
+            self.progressView.isHidden = isFinished
         })
     }
 }

@@ -58,6 +58,11 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
         if introSeconds >= 0 {
             self.timeButton.title = String(format: "남은 시간: %01d:%02d", introSeconds/60, introSeconds%60)
         }
+        if introSeconds == 30 {
+            if self.isLeader {
+                self.sendBotMessage(text: "30초 남았습니다")
+            }
+        }
     }
     @objc func countMain() {
         mainSeconds -= 1
@@ -69,11 +74,21 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
         } else if mainSeconds == 100 && !isLeader {
             sendImageSuggestion()
         }
+        if mainSeconds == 60 {
+            if self.isLeader {
+                self.sendBotMessage(text: "1분 남았습니다")
+            }
+        }
     }
     @objc func countFarewell() {
         farewellSeconds -= 1
         if farewellSeconds >= 0 {
             self.timeButton.title = String(format: "남은 시간: %01d:%02d", farewellSeconds/60, farewellSeconds%60)
+        }
+        if farewellSeconds == 30 {
+            if self.isLeader {
+                self.sendBotMessage(text: "30초 남았습니다")
+            }
         }
     }
     

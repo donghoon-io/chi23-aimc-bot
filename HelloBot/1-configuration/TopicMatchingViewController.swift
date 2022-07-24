@@ -21,6 +21,8 @@ class TopicMatchingViewController: UIViewController, TagListViewDelegate {
     
     @IBOutlet weak var startButton: UIButton!
     
+    var isDone = false
+    
     let db = Firestore.firestore()
     
     var captions = [String]()
@@ -62,18 +64,31 @@ class TopicMatchingViewController: UIViewController, TagListViewDelegate {
                             self.showError(error: err, button: self.startButton)
                             return
                         } else {
-                            if let counterTheme = snapshot1?.get("keywords") as? [String], let selectedThemes = snapshot1?.get("final_topics") {
+                            if let counterTheme = snapshot1?.get("keywords") as? [String], let selectedThemes = snapshot1?.get("final_topics") as? [String] {
                                 print(selectedThemes) //DO SOMETHING HERE
+                                self.finalThemes = selectedThemes
+                                self.finalImages = self.finalThemes.map({ key in
+                                    return self.images[self.themes.firstIndex(of: key)!]
+                                })
+                                print(self.finalImages)
                                 self.goSegue("goChatting1")
                             } else {
                                 counterDocument.addSnapshotListener { (snapshot2, error2) in
-                                    if let err2 = error2 {
-                                        self.showError(error: err2, button: self.startButton)
-                                        return
-                                    } else {
-                                        if let counterTheme1 = snapshot2?.get("keywords") as? [String], let selectedThemes1 = snapshot2?.get("final_topics") {
-                                            print(selectedThemes1) //DO SOMETHING HERE
-                                            self.goSegue("goChatting1")
+                                    if !self.isDone {
+                                        if let err2 = error2 {
+                                            self.showError(error: err2, button: self.startButton)
+                                            return
+                                        } else {
+                                            if let counterTheme1 = snapshot2?.get("keywords") as? [String], let selectedThemes1 = snapshot2?.get("final_topics") as? [String] {
+                                                print(selectedThemes1) //DO SOMETHING HERE
+                                                self.finalThemes = selectedThemes1
+                                                self.finalImages = self.finalThemes.map({ key in
+                                                    return self.images[self.themes.firstIndex(of: key)!]
+                                                })
+                                                print(self.finalImages)
+                                                self.isDone = true
+                                                self.goSegue("goChatting1")
+                                            }
                                         }
                                     }
                                 }
@@ -106,26 +121,31 @@ class TopicMatchingViewController: UIViewController, TagListViewDelegate {
                                         self.db.collection("user_data").document(experimentID).setData(["final_topics": self.finalThemes], merge: true) { errrrr in
                                             if let err1rrr = errrrr {
                                                 self.showError(error: err1rrr, button: self.startButton)
+                                                return
                                             } else {
                                                 self.goSegue("goChatting1")
                                             }
                                         }
                                     } else {
                                         counterDocument.addSnapshotListener { (snapshot2, error2) in
-                                            if let err2 = error2 {
-                                                self.showError(error: err2, button: self.startButton)
-                                                return
-                                            } else {
-                                                if let counterTheme1 = snapshot2?.get("keywords") as? [String] {
-                                                    self.finalThemes = self.handleThemes(me: self.selectedThemes, counter: counterTheme1)
-                                                    self.finalImages = self.finalThemes.map({ key in
-                                                        return self.images[self.themes.firstIndex(of: key)!]
-                                                    })
-                                                    self.db.collection("user_data").document(experimentID).setData(["final_topics": self.finalThemes], merge: true) { errrrr in
-                                                        if let err1rrr = errrrr {
-                                                            self.showError(error: err1rrr, button: self.startButton)
-                                                        } else {
-                                                            self.goSegue("goChatting1")
+                                            if !self.isDone {
+                                                if let err2 = error2 {
+                                                    self.showError(error: err2, button: self.startButton)
+                                                    return
+                                                } else {
+                                                    if let counterTheme1 = snapshot2?.get("keywords") as? [String] {
+                                                        self.finalThemes = self.handleThemes(me: self.selectedThemes, counter: counterTheme1)
+                                                        self.finalImages = self.finalThemes.map({ key in
+                                                            return self.images[self.themes.firstIndex(of: key)!]
+                                                        })
+                                                        self.db.collection("user_data").document(experimentID).setData(["final_topics": self.finalThemes], merge: true) { errrrr in
+                                                            if let err1rrr = errrrr {
+                                                                self.showError(error: err1rrr, button: self.startButton)
+                                                                return
+                                                            } else {
+                                                                self.isDone = true
+                                                                self.goSegue("goChatting1")
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -149,7 +169,7 @@ class TopicMatchingViewController: UIViewController, TagListViewDelegate {
     }
     
     func createNewChat(completionHandler: @escaping (_ err: Error?) -> ()) {
-        let users = [experimentID, counterID(), "bot"]
+        let users = [experimentID, counterID(), "bot", "secretBot" + experimentID, "secretBot" + counterID()]
         let data: [String: Any] = [
             "users": users
         ]

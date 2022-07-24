@@ -26,6 +26,8 @@ class LoginInstaViewController: UIViewController, isAbleToReceiveData {
     
     var delegate: isAbleToReceiveData?
     
+    var isDone = false
+    
     var identifier: String?
     var secret: Secret?
     
@@ -106,41 +108,44 @@ class LoginInstaViewController: UIViewController, isAbleToReceiveData {
                                 ANLoader.hide()
                                 ANLoader.showLoading("상대방을 기다리는 중...", disableUI: true)
                                 self.db.collection("user_data").document(counterID()).addSnapshotListener { (snapshot2, error2) in
-                                    if let err2 = error2 {
-                                        self.showError(error: err2, button: self.loginButton)
-                                    } else {
-                                        if let counterTheme1 = snapshot2?.get("captions") as? [String] {
-                                            self.postsCounter = counterTheme1
-                                            var parameters = [String:[String]]()
-                                            if isMyIdEven() {
-                                                parameters = ["sentences1": self.postsCounter, "sentences2": self.posts]
-                                            } else {
-                                                parameters = ["sentences1": self.posts, "sentences2": self.postsCounter]
-                                            }
-                                            AF.request(isMyIdEven() ? self.participant1 : self.participant2,
-                                                       method: .post,
-                                                       parameters: parameters,
-                                                       encoder: JSONParameterEncoder.default).response { response in
-                                                ANLoader.hide()
-                                                switch response.result {
-                                                case .success(let data):
-                                                    if let themes = JSON(data)["keywords"].arrayObject as? [[String]] {
-                                                        self.themes = themes.compactMap({ str_data in
-                                                            return str_data[2]
-                                                        })
-                                                        self.organized_post_images = themes.compactMap({ str_data in
-                                                            self.post_images[(isMyIdEven() ? Int(str_data[1]) : Int(str_data[0]))!]
-                                                        })
-                                                        
-                                                        //success
-                                                        self.loginButton.enable()
-                                                        self.goSegue("goMatching")
-                                                    }
-                                                case .failure(let error):
-                                                    self.showError(error: error, button: self.loginButton)
+                                    if !self.isDone {
+                                        if let err2 = error2 {
+                                            self.showError(error: err2, button: self.loginButton)
+                                        } else {
+                                            if let counterTheme1 = snapshot2?.get("captions") as? [String] {
+                                                self.postsCounter = counterTheme1
+                                                var parameters = [String:[String]]()
+                                                if isMyIdEven() {
+                                                    parameters = ["sentences1": self.postsCounter, "sentences2": self.posts]
+                                                } else {
+                                                    parameters = ["sentences1": self.posts, "sentences2": self.postsCounter]
                                                 }
+                                                AF.request(isMyIdEven() ? self.participant1 : self.participant2,
+                                                           method: .post,
+                                                           parameters: parameters,
+                                                           encoder: JSONParameterEncoder.default).response { response in
+                                                    ANLoader.hide()
+                                                    switch response.result {
+                                                    case .success(let data):
+                                                        if let themes = JSON(data)["keywords"].arrayObject as? [[String]] {
+                                                            self.themes = themes.compactMap({ str_data in
+                                                                return str_data[2]
+                                                            })
+                                                            self.organized_post_images = themes.compactMap({ str_data in
+                                                                self.post_images[(isMyIdEven() ? Int(str_data[1]) : Int(str_data[0]))!]
+                                                            })
+                                                            
+                                                            //success
+                                                            self.loginButton.enable()
+                                                            self.isDone = true
+                                                            self.goSegue("goMatching")
+                                                        }
+                                                    case .failure(let error):
+                                                        self.showError(error: error, button: self.loginButton)
+                                                    }
+                                                }
+                                                ANLoader.hide()
                                             }
-                                            ANLoader.hide()
                                         }
                                     }
                                 }

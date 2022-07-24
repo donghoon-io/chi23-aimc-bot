@@ -59,10 +59,7 @@ class LoginInstaViewController: UIViewController, isAbleToReceiveData {
         secret = sec
         
         Endpoint.Media.Posts.owned(by: sec.identifier).unlocking(with: sec).task(maxLength: .max, by: .instagram) { (yaya) in
-            
             ANLoader.hide()
-            
-            //upload data
             ANLoader.showLoading("상대방과 연결 중...", disableUI: true)
             
             self.db.collection("user_data").document(experimentID).setData(["captions": self.posts]) { (error) in
@@ -199,7 +196,7 @@ class LoginInstaViewController: UIViewController, isAbleToReceiveData {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goMatching" {
             if let nextViewController = segue.destination as? TopicMatchingViewController {
-                nextViewController.images = self.post_images
+                nextViewController.images = self.organized_post_images
                 nextViewController.captions = self.posts
                 nextViewController.identifier = self.identifier
                 nextViewController.secret = self.secret

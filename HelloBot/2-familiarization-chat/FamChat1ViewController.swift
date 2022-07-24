@@ -92,7 +92,6 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
         
         self.endTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.countEnd), userInfo: nil, repeats: true)
         
-        
         self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
         
         navigationItem.hidesBackButton = true
@@ -129,7 +128,7 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
     }
     
     @objc func click() {
-        self.sendImageMessage(image: "https://scontent-ssn1-1.cdninstagram.com/v/t51.2885-15/116672160_794831917720770_6108094005385287376_n.jpg?stp=dst-jpg_e35_s1080x1080&_nc_ht=scontent-ssn1-1.cdninstagram.com&_nc_cat=106&_nc_ohc=AFe1ZHyoDTMAX_vEGeS&edm=ABmJApABAAAA&ccb=7-5&ig_cache_key=MjM2NzA1MTcyMDY2MjM3MzQ2Mw%3D%3D.2-ccb7-5&oh=00_AT9hbPTNY3BtCC5JudJ0nVeceSjembHtE126mc9u8W-VKA&oe=62DF5A4F&_nc_sid=6136e7")
+        self.sendImageMessage(image: self.images[0])
     }
     
     // MARK: - Custom messages handlers
@@ -141,7 +140,7 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
     func createNewChat() {
         let users = [experimentID, self.user2ID, self.botID, self.secretBotID, self.counterSecretBotID]
         let data: [String: Any] = [
-            "users":users
+            "users": users
         ]
         
         let db = Firestore.firestore().collection("chat_familiarization")
@@ -156,38 +155,26 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
     }
     
     func loadChat() {
-        
-        //Fetch all the chats which has current user in it
         let db = Firestore.firestore().collection("chat_familiarization")
             .whereField("users", arrayContains: experimentID)
         
         
         db.getDocuments { (chatQuerySnap, error) in
-            
             if let error = error {
                 print("Error: \(error)")
                 return
             } else {
-                
-                //Count the no. of documents returned
                 guard let queryCount = chatQuerySnap?.documents.count else {
                     return
                 }
-                
                 if queryCount == 0 {
-                    //If documents count is zero that means there is no chat available and we need to create a new instance
                     self.createNewChat()
                 }
                 else if queryCount >= 1 {
-                    //Chat(s) found for currentUser
                     for doc in chatQuerySnap!.documents {
-                        
                         let chat = Chat(dictionary: doc.data())
-                        //Get the chat which has user2 id
                         if (chat?.users.contains(self.user2ID))! {
-                            
                             self.docReference = doc.reference
-                            //fetch it's thread collection
                             doc.reference.collection("thread")
                                 .order(by: "created", descending: false)
                                 .addSnapshotListener(includeMetadataChanges: true, listener: { (threadQuery, error) in
@@ -203,15 +190,14 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
                                             }
                                         }
                                         self.messagesCollectionView.reloadData()
-                                        self.messagesCollectionView.scrollToBottom(animated: true)
+                                        self.messagesCollectionView.scrollToLastItem()
                                         
-                                        // handle bot here
                                         self.bot()
                                     }
                                 })
                             return
-                        } //end of if
-                    } //end of for
+                        }
+                    }
                     self.createNewChat()
                 } else {
                     print("Let's hope this error never prints!")
@@ -306,19 +292,21 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
         messagesCollectionView.scrollToLastItem(animated: true)
     }
     
+    func sendImageSuggestion() {
+        DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
+            self.sendBotMessage(text: "본 주제와 비슷한 사진을 찾았어요! 보다 더 대화를 구체적으로 나누기 위해 본 사진을 공유해보세요!\n아래 이미지의 오른쪽 버튼을 누르면 상대방과 공유됩니다.", isPrivate: true)
+            DispatchQueue.main.asyncAfter(deadline: .now()+2.0) {
+                self.sendBotImageMessage(image: self.images[0])
+            }
+        }
+    }
+    
     func bot() {
         if isLeader {
             if isInitial {
                 isInitial = false
                 DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
-                    /*
-                     self.sendBotMessage(text: "본 주제와 비슷한 사진을 찾았어요! 보다 더 대화를 구체적으로 나누기 위해 본 사진을 공유해보세요!\n아래 이미지의 오른쪽 버튼을 누르면 상대방과 공유됩니다.", isPrivate: true)
-                     DispatchQueue.main.asyncAfter(deadline: .now()+2.0) {
-                     self.sendBotImageMessage(image: "https://scontent-ssn1-1.cdninstagram.com/v/t51.2885-15/116672160_794831917720770_6108094005385287376_n.jpg?stp=dst-jpg_e35_s1080x1080&_nc_ht=scontent-ssn1-1.cdninstagram.com&_nc_cat=106&_nc_ohc=AFe1ZHyoDTMAX_vEGeS&edm=ABmJApABAAAA&ccb=7-5&ig_cache_key=MjM2NzA1MTcyMDY2MjM3MzQ2Mw%3D%3D.2-ccb7-5&oh=00_AT9hbPTNY3BtCC5JudJ0nVeceSjembHtE126mc9u8W-VKA&oe=62DF5A4F&_nc_sid=6136e7")
-                     }
-                     */
                     self.sendBotMessage(text: "안녕하세요, 저는 여러분들의 인스타그램 데이터를 바탕으로 친밀해지도록 돕는 헬로봇이예요.")
-                    
                     DispatchQueue.main.asyncAfter(deadline: .now()+2.0) {
                         self.sendBotMessage(text: "먼저 시작하기에 앞서, 두분께서는 서로 인사를 나누며 자기소개를 해볼까요?")
                     }
@@ -330,7 +318,6 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         let message = Message(id: UUID().uuidString, content: text, created: Timestamp(), senderID: experimentID, senderName: self.displayName)
         
-        //messages.append(message)
         insertNewMessage(message)
         save(message)
         
@@ -342,19 +329,15 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
     
     // MARK: - MessagesDataSource
     func currentSender() -> SenderType {
-        
         return Sender(id: experimentID, displayName: displayName)
         
     }
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
-        
         return messages[indexPath.section]
-        
     }
     
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
-        
         return messages.count
     }
     
@@ -391,10 +374,6 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
         }
     }
     func configureAccessoryView(_ accessoryView: UIView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
-        // Cells are reused, so only add a button here once. For real use you would need to
-        // ensure any subviews are removed if not needed
-        
-        
         accessoryView.subviews.forEach { $0.removeFromSuperview() }
         accessoryView.backgroundColor = .clear
         

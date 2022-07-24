@@ -85,8 +85,6 @@ class FamChat2ViewController: MessagesViewController, InputBarAccessoryViewDeleg
         loadChat()
     }
     
-    // MARK: - Custom messages handlers
-    
     func typingIndicator(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UICollectionViewCell {
         return TypingIndicatorCell()
     }
@@ -94,7 +92,7 @@ class FamChat2ViewController: MessagesViewController, InputBarAccessoryViewDeleg
     func createNewChat() {
         let users = [experimentID, self.user2ID, self.botID]
         let data: [String: Any] = [
-            "users":users
+            "users": users
         ]
         
         let db = Firestore.firestore().collection("chat_familiarization")
@@ -121,26 +119,17 @@ class FamChat2ViewController: MessagesViewController, InputBarAccessoryViewDeleg
                 print("Error: \(error)")
                 return
             } else {
-                
-                //Count the no. of documents returned
                 guard let queryCount = chatQuerySnap?.documents.count else {
                     return
                 }
-                
                 if queryCount == 0 {
-                    //If documents count is zero that means there is no chat available and we need to create a new instance
                     self.createNewChat()
                 }
                 else if queryCount >= 1 {
-                    //Chat(s) found for currentUser
                     for doc in chatQuerySnap!.documents {
-                        
                         let chat = Chat(dictionary: doc.data())
-                        //Get the chat which has user2 id
                         if (chat?.users.contains(self.user2ID))! {
-                            
                             self.docReference = doc.reference
-                            //fetch it's thread collection
                             doc.reference.collection("thread")
                                 .order(by: "created", descending: false)
                                 .addSnapshotListener(includeMetadataChanges: true, listener: { (threadQuery, error) in
@@ -156,15 +145,14 @@ class FamChat2ViewController: MessagesViewController, InputBarAccessoryViewDeleg
                                             }
                                         }
                                         self.messagesCollectionView.reloadData()
-                                        self.messagesCollectionView.scrollToBottom(animated: true)
+                                        self.messagesCollectionView.scrollToLastItem()
                                         
-                                        // handle bot here
                                         self.bot()
                                     }
                                 })
                             return
-                        } //end of if
-                    } //end of for
+                        }
+                    }
                     self.createNewChat()
                 } else {
                     print("Let's hope this error never prints!")
@@ -207,14 +195,11 @@ class FamChat2ViewController: MessagesViewController, InputBarAccessoryViewDeleg
         }
         
         docReference?.collection("thread").addDocument(data: data, completion: { (error) in
-            
             if let error = error {
                 print("Error Sending message: \(error)")
                 return
             }
-            
             self.messagesCollectionView.scrollToLastItem()
-            
         })
     }
     
@@ -258,22 +243,16 @@ class FamChat2ViewController: MessagesViewController, InputBarAccessoryViewDeleg
     
     // MARK: - MessagesDataSource
     func currentSender() -> SenderType {
-        
         return Sender(id: experimentID, displayName: displayName)
-        
     }
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
-        
         return messages[indexPath.section]
-        
     }
     
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
-        
         return messages.count
     }
-    
     
     // MARK: - MessagesLayoutDelegate
     
@@ -307,7 +286,6 @@ class FamChat2ViewController: MessagesViewController, InputBarAccessoryViewDeleg
     }
     
     func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
-        
         let corner: MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight: .bottomLeft
         return .bubbleTail(corner, .curved)
     }

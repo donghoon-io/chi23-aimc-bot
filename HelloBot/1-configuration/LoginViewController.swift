@@ -44,7 +44,7 @@ class LoginViewController: UIViewController {
                     print("success")
                     self?.delegate?.pass(id: secret.identifier, sec: secret)
                     self?.dismiss(animated: true, completion: {
-                        ANLoader.showLoading("로그인 중\n최대 1분이 소요될 수 있습니다", disableUI: false)
+                        ANLoader.showLoading("로그인 중\n최대 1분이 소요될 수 있습니다", disableUI: true)
                     })
                 }
             }

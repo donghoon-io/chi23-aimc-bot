@@ -52,8 +52,6 @@ class LoginInstaViewController: UIViewController, isAbleToReceiveData {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
     func pass(id: String, sec: Secret) {
@@ -69,30 +67,25 @@ class LoginInstaViewController: UIViewController, isAbleToReceiveData {
             
             self.db.collection("user_data").document(experimentID).setData(["captions": self.posts]) { (error) in
                 if let error = error {
-                    self.loginButton.enable()
-                    ANLoader.hide()
-                    self.showAlert(error.localizedDescription)
+                    self.showError(error: error, button: self.loginButton)
                     return
                 } else {
                     ANLoader.hide()
                     ANLoader.showLoading("상대방과의 공통된\n관심사 계산 중...", disableUI: true)
                     
-                    let counterpartID = Int(experimentID)! % 2 == 0 ? String(Int(experimentID)!+1) : String(Int(experimentID)!-1)
-                    self.db.collection("user_data").document(counterpartID).getDocument { (snapshot, error) in
+                    self.db.collection("user_data").document(counterID()).getDocument { (snapshot, error) in
                         if let error = error {
-                            self.loginButton.enable()
-                            ANLoader.hide()
-                            self.showAlert(error.localizedDescription)
+                            self.showError(error: error, button: self.loginButton)
                         } else {
                             if let data = snapshot?.get("captions") as? [String] {
                                 self.postsCounter = data
                                 var parameters = [String:[String]]()
-                                if Int(experimentID)! % 2 == 0 {
+                                if isMyIdEven() {
                                     parameters = ["sentences1": self.postsCounter, "sentences2": self.posts]
                                 } else {
                                     parameters = ["sentences1": self.posts, "sentences2": self.postsCounter]
                                 }
-                                AF.request(Int(experimentID)! % 2==0 ? self.participant1 : self.participant2,
+                                AF.request(isMyIdEven() ? self.participant1 : self.participant2,
                                            method: .post,
                                            parameters: parameters,
                                            encoder: JSONParameterEncoder.default).response { response in
@@ -104,36 +97,30 @@ class LoginInstaViewController: UIViewController, isAbleToReceiveData {
                                                 return str_data[2]
                                             })
                                             self.organized_post_images = themes.compactMap({ str_data in
-                                                self.post_images[(Int(experimentID)! % 2 == 0 ? Int(str_data[1]) : Int(str_data[0]))!]
+                                                self.post_images[(isMyIdEven() ? Int(str_data[1]) : Int(str_data[0]))!]
                                             })
-                                            
-                                            //success
-                                            self.loginButton.enable()
-                                            self.performSegue(withIdentifier: "goMatching", sender: self)
+                                            self.goSegue("goMatching")
                                         }
                                     case .failure(let error):
-                                        self.loginButton.enable()
-                                        self.showAlert(error.localizedDescription)
+                                        self.showError(error: error, button: self.loginButton)
                                     }
                                 }
                             } else {
                                 ANLoader.hide()
                                 ANLoader.showLoading("상대방을 기다리는 중...", disableUI: true)
-                                self.db.collection("user_data").document(counterpartID).addSnapshotListener { (snapshot2, error2) in
+                                self.db.collection("user_data").document(counterID()).addSnapshotListener { (snapshot2, error2) in
                                     if let err2 = error2 {
-                                        self.loginButton.enable()
-                                        self.showAlert(err2.localizedDescription)
+                                        self.showError(error: err2, button: self.loginButton)
                                     } else {
                                         if let counterTheme1 = snapshot2?.get("captions") as? [String] {
-                                            print("counter: \(counterTheme1)")
                                             self.postsCounter = counterTheme1
                                             var parameters = [String:[String]]()
-                                            if Int(experimentID)! % 2 == 0 {
+                                            if isMyIdEven() {
                                                 parameters = ["sentences1": self.postsCounter, "sentences2": self.posts]
                                             } else {
                                                 parameters = ["sentences1": self.posts, "sentences2": self.postsCounter]
                                             }
-                                            AF.request(Int(experimentID)! % 2==0 ? self.participant1 : self.participant2,
+                                            AF.request(isMyIdEven() ? self.participant1 : self.participant2,
                                                        method: .post,
                                                        parameters: parameters,
                                                        encoder: JSONParameterEncoder.default).response { response in
@@ -145,16 +132,15 @@ class LoginInstaViewController: UIViewController, isAbleToReceiveData {
                                                             return str_data[2]
                                                         })
                                                         self.organized_post_images = themes.compactMap({ str_data in
-                                                            self.post_images[(Int(experimentID)! % 2 == 0 ? Int(str_data[1]) : Int(str_data[0]))!]
+                                                            self.post_images[(isMyIdEven() ? Int(str_data[1]) : Int(str_data[0]))!]
                                                         })
                                                         
                                                         //success
                                                         self.loginButton.enable()
-                                                        self.performSegue(withIdentifier: "goMatching", sender: self)
+                                                        self.goSegue("goMatching")
                                                     }
                                                 case .failure(let error):
-                                                    self.loginButton.enable()
-                                                    self.showAlert(error.localizedDescription)
+                                                    self.showError(error: error, button: self.loginButton)
                                                 }
                                             }
                                             ANLoader.hide()
@@ -204,9 +190,7 @@ class LoginInstaViewController: UIViewController, isAbleToReceiveData {
                 }
                 
             case .failure(let error):
-                let alertController = UIAlertController(title: error.localizedDescription, message: "실험 주관인에게 문의하시오", preferredStyle: .actionSheet)
-                alertController.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
-                self.present(alertController, animated: true, completion: nil)
+                self.showError(error: error, button: self.loginButton)
                 
                 return
             }

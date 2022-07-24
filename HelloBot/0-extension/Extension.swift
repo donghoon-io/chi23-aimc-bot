@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import ANLoader
 
 extension UIColor {
     convenience init(hex: String, alpha: CGFloat = 1.0) {
@@ -81,4 +82,20 @@ extension UIViewController {
         alertController.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
+    func showError(error: Error, button: UIButton) {
+        ANLoader.hide()
+        button.enable()
+        self.showAlert(error.localizedDescription)
+    }
+    func goSegue(_ id: String) {
+        ANLoader.hide()
+        self.performSegue(withIdentifier: id, sender: self)
+    }
+}
+func isMyIdEven() -> Bool {
+    return Int(experimentID)! % 2 == 0
+}
+
+func counterID() -> String {
+    return isMyIdEven() ? "\(Int(experimentID)!+1)" : "\(Int(experimentID)!-1)"
 }

@@ -30,11 +30,11 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
     
     var user2Name = "대화방"
     var user2ImgUrl: String?
-    var user2ID = String(Int(experimentID)! % 2 == 0 ? Int(experimentID)!+1 : Int(experimentID)!-1)
+    var user2ID = counterID()
     var botID = "bot"
     
     var secretBotID = "secretBot" + experimentID
-    var counterSecretBotID = "secretBot" + String(Int(experimentID)! % 2 == 0 ? String(Int(experimentID)!+1) : String(Int(experimentID)!-1))
+    var counterSecretBotID = "secretBot" + counterID()
     
     var isLeader = false
     
@@ -97,9 +97,7 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
         
         navigationItem.hidesBackButton = true
         
-        if Int(experimentID)! % 2 == 1 {
-            isLeader = true
-        }
+        isLeader = !isMyIdEven()
         
         IQKeyboardManager.shared.enable = false
         

@@ -42,8 +42,6 @@ class TopicMatchingViewController: UIViewController, TagListViewDelegate {
         setTagListView()
         createTag(themes)
         
-        
-        
         startButton.disable()
     }
     
@@ -51,37 +49,29 @@ class TopicMatchingViewController: UIViewController, TagListViewDelegate {
         self.startButton.disable()
         ANLoader.showLoading("상대방 기다리는 중...", disableUI: true)
         
+        let counterDocument = self.db.collection("user_data").document(counterID())
         
-        let counter = Int(experimentID)! % 2 == 0 ? "\(Int(experimentID)!+1)" : "\(Int(experimentID)!-1)"
-        let counterDocument = self.db.collection("user_data").document(counter)
-        
-        
-        if Int(experimentID)! % 2 == 0 {
+        if isMyIdEven() {
             self.db.collection("user_data").document(experimentID).updateData(["keywords": self.selectedThemes]) { (error) in
                 if let error = error {
-                    self.startButton.enable()
-                    self.showAlert(error.localizedDescription)
+                    self.showError(error: error, button: self.startButton)
                     return
                 } else {
                     counterDocument.getDocument { (snapshot1, error1) in
                         if let err = error1 {
-                            self.startButton.enable()
-                            self.showAlert(err.localizedDescription)
+                            self.showError(error: err, button: self.startButton)
+                            return
                         } else {
                             if let counterTheme = snapshot1?.get("keywords") as? [String] {
-                                ANLoader.hide()
-                                
-                                self.performSegue(withIdentifier: "goChatting1", sender: self)
+                                self.goSegue("goChatting1")
                             } else {
                                 counterDocument.addSnapshotListener { (snapshot2, error2) in
                                     if let err2 = error2 {
-                                        self.startButton.enable()
-                                        self.showAlert(err2.localizedDescription)
+                                        self.showError(error: err2, button: self.startButton)
+                                        return
                                     } else {
                                         if let counterTheme1 = snapshot2?.get("keywords") as? [String] {
-                                            ANLoader.hide()
-                                            
-                                            self.performSegue(withIdentifier: "goChatting1", sender: self)
+                                            self.goSegue("goChatting1")
                                         }
                                     }
                                 }
@@ -93,41 +83,37 @@ class TopicMatchingViewController: UIViewController, TagListViewDelegate {
         } else {
             createNewChat { (errrrr) in
                 if let erer = errrrr {
-                    self.startButton.enable()
-                    self.showAlert(erer.localizedDescription)
+                    self.showError(error: erer, button: self.startButton)
+                    return
                 } else {
                     self.db.collection("user_data").document(experimentID).setData(["keywords": self.selectedThemes]) { (error) in
                         if let error = error {
-                            self.startButton.enable()
-                            self.showAlert(error.localizedDescription)
+                            self.showError(error: error, button: self.startButton)
                             return
                         } else {
                             counterDocument.getDocument { (snapshot1, error1) in
                                 if let err = error1 {
-                                    self.showAlert(err.localizedDescription)
+                                    self.showError(error: err, button: self.startButton)
+                                    return
                                 } else {
                                     if let counterTheme = snapshot1?.get("keywords") as? [String] {
                                         self.finalThemes = self.handleThemes(me: self.selectedThemes, counter: counterTheme)
                                         self.finalImages = self.finalThemes.map({ key in
                                             return self.images[self.themes.firstIndex(of: key)!]
                                         })
-                                        ANLoader.hide()
-                                        
-                                        self.performSegue(withIdentifier: "goChatting1", sender: self)
+                                        self.goSegue("goChatting1")
                                     } else {
                                         counterDocument.addSnapshotListener { (snapshot2, error2) in
                                             if let err2 = error2 {
-                                                self.startButton.enable()
-                                                self.showAlert(err2.localizedDescription)
+                                                self.showError(error: err2, button: self.startButton)
+                                                return
                                             } else {
                                                 if let counterTheme1 = snapshot2?.get("keywords") as? [String] {
                                                     self.finalThemes = self.handleThemes(me: self.selectedThemes, counter: counterTheme1)
                                                     self.finalImages = self.finalThemes.map({ key in
                                                         return self.images[self.themes.firstIndex(of: key)!]
                                                     })
-                                                    ANLoader.hide()
-                                                    
-                                                    self.performSegue(withIdentifier: "goChatting1", sender: self)
+                                                    self.goSegue("goChatting1")
                                                 }
                                             }
                                         }
@@ -149,7 +135,7 @@ class TopicMatchingViewController: UIViewController, TagListViewDelegate {
     }
     
     func createNewChat(completionHandler: @escaping (_ err: Error?) -> ()) {
-        let users = [experimentID, String(Int(experimentID)! % 2 == 0 ? Int(experimentID)!+1 : Int(experimentID)!-1), "bot"]
+        let users = [experimentID, counterID(), "bot"]
         let data: [String: Any] = [
             "users":users
         ]

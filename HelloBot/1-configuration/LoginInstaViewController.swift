@@ -38,6 +38,7 @@ class LoginInstaViewController: UIViewController, isAbleToReceiveData {
     var comments = [String]()
     
     var themes = [String]()
+    var organized_posts = [String]()
     var organized_post_images = [String]()
     var finalThemes = [String]()
     
@@ -62,7 +63,7 @@ class LoginInstaViewController: UIViewController, isAbleToReceiveData {
         
         Endpoint.Media.Posts.owned(by: sec.identifier).unlocking(with: sec).task(maxLength: .max, by: .instagram) { (yaya) in
             ANLoader.hide()
-            ANLoader.showLoading("상대방과 연결 중...", disableUI: true)
+            ANLoader.showLoading("상대방과 연결 중..", disableUI: true)
             
             self.db.collection("user_data").document(experimentID).setData(["captions": self.posts]) { (error) in
                 if let error = error {
@@ -70,7 +71,7 @@ class LoginInstaViewController: UIViewController, isAbleToReceiveData {
                     return
                 } else {
                     ANLoader.hide()
-                    ANLoader.showLoading("상대방과의 공통된\n관심사 계산 중...", disableUI: true)
+                    ANLoader.showLoading("공통 관심사\n추출 중..", disableUI: true)
                     
                     self.db.collection("user_data").document(counterID()).getDocument { (snapshot, error) in
                         if let error = error {
@@ -98,6 +99,9 @@ class LoginInstaViewController: UIViewController, isAbleToReceiveData {
                                             self.organized_post_images = themes.compactMap({ str_data in
                                                 self.post_images[(isMyIdEven() ? Int(str_data[1]) : Int(str_data[0]))!]
                                             })
+                                            self.organized_posts = themes.compactMap({ str_data in
+                                                self.posts[(isMyIdEven() ? Int(str_data[1]) : Int(str_data[0]))!]
+                                            })
                                             self.goSegue("goMatching")
                                         }
                                     case .failure(let error):
@@ -106,7 +110,7 @@ class LoginInstaViewController: UIViewController, isAbleToReceiveData {
                                 }
                             } else {
                                 ANLoader.hide()
-                                ANLoader.showLoading("상대방을 기다리는 중...", disableUI: true)
+                                ANLoader.showLoading("상대방 연결 중..", disableUI: true)
                                 self.db.collection("user_data").document(counterID()).addSnapshotListener { (snapshot2, error2) in
                                     if !self.isDone {
                                         if let err2 = error2 {
@@ -133,6 +137,9 @@ class LoginInstaViewController: UIViewController, isAbleToReceiveData {
                                                             })
                                                             self.organized_post_images = themes.compactMap({ str_data in
                                                                 self.post_images[(isMyIdEven() ? Int(str_data[1]) : Int(str_data[0]))!]
+                                                            })
+                                                            self.organized_posts = themes.compactMap({ str_data in
+                                                                self.posts[(isMyIdEven() ? Int(str_data[1]) : Int(str_data[0]))!]
                                                             })
                                                             
                                                             //success
@@ -202,7 +209,7 @@ class LoginInstaViewController: UIViewController, isAbleToReceiveData {
         if segue.identifier == "goMatching" {
             if let nextViewController = segue.destination as? TopicMatchingViewController {
                 nextViewController.images = self.organized_post_images
-                nextViewController.captions = self.posts
+                nextViewController.captions = self.organized_posts
                 nextViewController.identifier = self.identifier
                 nextViewController.secret = self.secret
                 nextViewController.themes = self.themes

@@ -43,54 +43,80 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
     var messages: [Message] = []
     
     var lastDate = Date()
-    
     var timer = Timer()
-    
     var currentOrderIndex = 0
     
+    var introTimer = Timer()
+    var introSeconds = 120
+    var mainTimer = Timer()
+    var mainSeconds = 300
+    var farewellTimer = Timer()
+    var farewellSeconds = 120
+    
+    @objc func countIntro() {
+        introSeconds -= 1
+        if introSeconds >= 0 {
+            self.timeButton.title = String(format: "%01d:%02d", introSeconds/60, introSeconds%60)
+        }
+    }
+    @objc func countMain() {
+        mainSeconds -= 1
+        if introSeconds >= 0 {
+            self.timeButton.title = String(format: "%01d:%02d", mainSeconds/60, mainSeconds%60)
+        }
+    }
+    @objc func countFarewell() {
+        farewellSeconds -= 1
+        if introSeconds >= 0 {
+            self.timeButton.title = String(format: "%01d:%02d", farewellSeconds/60, farewellSeconds%60)
+        }
+    }
+    
+    @IBOutlet weak var timeButton: UIBarButtonItem!
+    
     @objc func updateCounting() {
-        if isLeader && Date().timeIntervalSince(lastDate) > 120.0 && currentOrderIndex == 0 {
+        if introSeconds == 1 && currentOrderIndex == 0 {
             lastDate = Date()
             currentOrderIndex += 1
             DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
                 let lastStr = UnicodeScalar(String(self.themesToDiscuss[0].last ?? "이"))?.value ?? 28
-                if (lastStr-44032) % 28 == 0 {
-                    self.sendBotMessage(text: "서로 인사는 즐겁게 나누셨나요? 그럼, 지금부터 5분간 두 분께서 공통되게 관심을 가질만한 '\(self.themesToDiscuss[0])'라는 토픽으로 이야기를 시작해보세요.")
-                } else {
-                    self.sendBotMessage(text: "서로 인사는 즐겁게 나누셨나요? 그럼, 지금부터 5분간 두 분께서 공통되게 관심을 가질만한 '\(self.themesToDiscuss[0])'이라는 토픽으로 이야기를 시작해보세요.")
+                if self.isLeader {
+                    if (lastStr-44032) % 28 == 0 {
+                        self.sendBotMessage(text: "서로 인사는 즐겁게 나누셨나요? 그럼, 지금부터 5분간 두 분께서 공통되게 관심을 가질만한 '\(self.themesToDiscuss[0])'라는 토픽으로 이야기를 시작해보세요.")
+                    } else {
+                        self.sendBotMessage(text: "서로 인사는 즐겁게 나누셨나요? 그럼, 지금부터 5분간 두 분께서 공통되게 관심을 가질만한 '\(self.themesToDiscuss[0])'이라는 토픽으로 이야기를 시작해보세요.")
+                    }
                 }
+                self.introTimer.invalidate()
+                self.mainTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.countMain), userInfo: nil, repeats: true)
             }
-        } else if isLeader && Date().timeIntervalSince(lastDate) > 300.0 && currentOrderIndex == 1 {
+        } else if mainSeconds == 1 && currentOrderIndex == 1 {
             lastDate = Date()
             currentOrderIndex += 1
             DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
-                self.sendBotMessage(text: "두분 다 즐거운 대화 나누셨나요? 마지막으로, 2분간 서로 대화를 마무리하고 인사말을 나눠보세요:)")
+                if self.isLeader {
+                    self.sendBotMessage(text: "두분 다 즐거운 대화 나누셨나요? 마지막으로, 2분간 서로 대화를 마무리하고 인사말을 나눠보세요:)")
+                }
+                self.mainTimer.invalidate()
+                self.farewellTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.countFarewell), userInfo: nil, repeats: true)
             }
-        }
-    }
-    
-    var endTimer = Timer()
-    var startTime = Date()
-    var endNotified = false
-    
-    @objc func countEnd(){
-        if !endNotified && Date().timeIntervalSince(startTime) > 540 {
+        } else if farewellSeconds == 1 && currentOrderIndex == 2 {
+            lastDate = Date()
+            currentOrderIndex += 1
             DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
                 if self.isLeader {
                     self.sendBotMessage(text: "실험이 종료되었습니다. 다음 실험과정으로 넘어가도록 하겠습니다! 잠시만 기다려주세요")
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now()+2.0) {
+                    self.timer.invalidate()
                     //next view
                 }
             }
-            endNotified = true
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.endTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.countEnd), userInfo: nil, repeats: true)
         
         self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
         
@@ -100,7 +126,7 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
         
         IQKeyboardManager.shared.enable = false
         
-        self.title = user2Name
+        self.timeButton.isEnabled = false
         
         
         navigationItem.largeTitleDisplayMode = .never
@@ -155,9 +181,7 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
     }
     
     func loadChat() {
-        let db = Firestore.firestore().collection("chat_familiarization")
-            .whereField("users", arrayContains: experimentID)
-        
+        let db = Firestore.firestore().collection("chat_familiarization").whereField("users", arrayContains: experimentID)
         
         db.getDocuments { (chatQuerySnap, error) in
             if let error = error {
@@ -302,14 +326,17 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
     }
     
     func bot() {
-        if isLeader {
-            if isInitial {
-                isInitial = false
-                DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
+        if isInitial {
+            isInitial = false
+            DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
+                if self.isLeader {
                     self.sendBotMessage(text: "안녕하세요, 저는 여러분들의 인스타그램 데이터를 바탕으로 친밀해지도록 돕는 헬로봇이예요.")
-                    DispatchQueue.main.asyncAfter(deadline: .now()+2.0) {
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now()+2.0) {
+                    if self.isLeader {
                         self.sendBotMessage(text: "먼저 시작하기에 앞서, 두분께서는 서로 인사를 나누며 자기소개를 해볼까요?")
                     }
+                    self.introTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.countIntro), userInfo: nil, repeats: true)
                 }
             }
         }

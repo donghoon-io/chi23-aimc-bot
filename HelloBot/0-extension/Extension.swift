@@ -92,6 +92,16 @@ extension UIViewController {
         self.performSegue(withIdentifier: id, sender: self)
     }
 }
+extension TimeInterval {
+
+    var seconds: Int {
+        return Int(self.rounded())
+    }
+
+    var milliseconds: Int {
+        return Int(self * 1_000)
+    }
+}
 func isMyIdEven() -> Bool {
     return Int(experimentID)! % 2 == 0
 }

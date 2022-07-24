@@ -361,8 +361,13 @@
                         <viewLayoutGuide key="safeArea" id="Ei3-9Q-1oR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="RPH-Tb-LXY"/>
+                    <navigationItem key="navigationItem" id="RPH-Tb-LXY">
+                        <barButtonItem key="rightBarButtonItem" title="남은 시간: 11:11" id="WQm-6v-TsN">
+                            <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="timeButton" destination="WQm-6v-TsN" id="y0O-O7-L8b"/>
                         <segue destination="Ohi-AM-r2G" kind="show" identifier="goCollaboration1" id="CB7-6W-NpW"/>
                     </connections>
                 </viewController>

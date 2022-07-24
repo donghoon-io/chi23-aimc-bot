@@ -362,7 +362,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="RPH-Tb-LXY">
-                        <barButtonItem key="rightBarButtonItem" title="남은 시간: 11:11" id="WQm-6v-TsN">
+                        <barButtonItem key="rightBarButtonItem" id="WQm-6v-TsN">
                             <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </barButtonItem>
                     </navigationItem>

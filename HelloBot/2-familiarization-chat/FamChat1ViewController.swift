@@ -56,19 +56,24 @@ class FamChat1ViewController: MessagesViewController, InputBarAccessoryViewDeleg
     @objc func countIntro() {
         introSeconds -= 1
         if introSeconds >= 0 {
-            self.timeButton.title = String(format: "%01d:%02d", introSeconds/60, introSeconds%60)
+            self.timeButton.title = String(format: "남은 시간: %01d:%02d", introSeconds/60, introSeconds%60)
         }
     }
     @objc func countMain() {
         mainSeconds -= 1
-        if introSeconds >= 0 {
-            self.timeButton.title = String(format: "%01d:%02d", mainSeconds/60, mainSeconds%60)
+        if mainSeconds >= 0 {
+            self.timeButton.title = String(format: "남은 시간: %01d:%02d", mainSeconds/60, mainSeconds%60)
+        }
+        if mainSeconds == 200 && isLeader {
+            sendImageSuggestion()
+        } else if mainSeconds == 100 && !isLeader {
+            sendImageSuggestion()
         }
     }
     @objc func countFarewell() {
         farewellSeconds -= 1
-        if introSeconds >= 0 {
-            self.timeButton.title = String(format: "%01d:%02d", farewellSeconds/60, farewellSeconds%60)
+        if farewellSeconds >= 0 {
+            self.timeButton.title = String(format: "남은 시간: %01d:%02d", farewellSeconds/60, farewellSeconds%60)
         }
     }
     

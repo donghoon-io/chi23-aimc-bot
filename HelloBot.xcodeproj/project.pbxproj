@@ -50,6 +50,7 @@
 		26810533288B246C007BB7A6 /* CollaborationChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollaborationChatViewController.swift; sourceTree = "<group>"; };
 		26810536288B25CF007BB7A6 /* SurveyWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyWebViewController.swift; sourceTree = "<group>"; };
 		26810538288B26CB007BB7A6 /* CollaborationReadyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollaborationReadyViewController.swift; sourceTree = "<group>"; };
+		2681053C288F1936007BB7A6 /* HelloBot.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HelloBot.entitlements; sourceTree = "<group>"; };
 		26C263E22883EC86005FCB68 /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		26C263E32883EC86005FCB68 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		26C263E42883EC86005FCB68 /* DataStructure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStructure.swift; sourceTree = "<group>"; };
@@ -105,6 +106,7 @@
 		264B7FE82882A25900CA6848 /* HelloBot */ = {
 			isa = PBXGroup;
 			children = (
+				2681053C288F1936007BB7A6 /* HelloBot.entitlements */,
 				26DFAA502883014A00ADEEE5 /* GoogleService-Info.plist */,
 				26810535288B25C2007BB7A6 /* 4-survey */,
 				26810532288B245B007BB7A6 /* 3-collaboration-chat */,
@@ -487,8 +489,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = HelloBot/HelloBot.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = CJG8NYLG53;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HelloBot/Info.plist;
@@ -518,8 +521,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = HelloBot/HelloBot.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = CJG8NYLG53;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HelloBot/Info.plist;

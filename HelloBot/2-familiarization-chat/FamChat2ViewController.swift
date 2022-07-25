@@ -222,7 +222,10 @@ class FamChat2ViewController: MessagesViewController, InputBarAccessoryViewDeleg
             if isInitial {
                 isInitial = false
                 DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
-                    self.sendBotMessage(text: "두 분께서는 먼저 9분간 자유 주제로 대화를 나눠보세요")
+                    self.sendBotMessage(text: "그럼, 실험의 첫번째 과정을 시작하도록 하겠습니다.")
+                    DispatchQueue.main.asyncAfter(deadline: .now()+2.0) {
+                        self.sendBotMessage(text: "두 분께서는 9분간 자유 주제로 대화를 나눠보세요")
+                    }
                 }
             }
         }

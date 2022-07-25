@@ -22,7 +22,7 @@ class InputIDViewController: UIViewController {
         case "2": // Conversation
             self.performSegue(withIdentifier: "goConversationConnection", sender: self)
         default: // No conversation
-            self.performSegue(withIdentifier: "goWithoutConversationConnection", sender: self)
+            self.performSegue(withIdentifier: "goCollaborationPrep3", sender: self)
             
         }
     }

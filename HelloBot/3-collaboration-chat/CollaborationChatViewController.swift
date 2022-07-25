@@ -72,17 +72,34 @@ class CollaborationChatViewController: MessagesViewController, InputBarAccessory
         
         navigationItem.largeTitleDisplayMode = .never
         maintainPositionOnKeyboardFrameChanged = true
+        
+        let newMessageInputBar = InputBarAccessoryView()
+        newMessageInputBar.delegate = self
+        messageInputBar = newMessageInputBar
+        
+        let items = [
+            makeButton(image: UIImage(systemName: "at")!).onTouchUpInside({ button in
+                self.messageInputBar.inputTextView.text = "@헬로봇 "
+                self.messageInputBar.inputTextView.becomeFirstResponder()
+            }),
+            messageInputBar.sendButton.configure {
+                $0.title = "전송"
+                $0.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+            }
+        ]
+        messageInputBar.setRightStackViewWidthConstant(to: 80, animated: true)
+        messageInputBar.setStackViewItems(items, forStack: .right, animated: true)
+        reloadInputViews()
+        
         messageInputBar.inputTextView.tintColor = .lightGray
         messageInputBar.inputTextView.autocorrectionType = .no
         messageInputBar.sendButton.setTitleColor(.darkGray, for: .normal)
         
-        messageInputBar.delegate = self
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         
         messageInputBar.inputTextView.placeholder = "메시지를 입력하세요"
-        messageInputBar.sendButton.setTitle("전송", for: .normal)
         
         loadChat()
     }
@@ -99,7 +116,7 @@ class CollaborationChatViewController: MessagesViewController, InputBarAccessory
             "users":users
         ]
         
-        let db = Firestore.firestore().collection("chat_familiarization")
+        let db = Firestore.firestore().collection("chat_collaboration")
         db.addDocument(data: data) { (error) in
             if let error = error {
                 print("Unable to create chat! \(error)")
@@ -111,11 +128,7 @@ class CollaborationChatViewController: MessagesViewController, InputBarAccessory
     }
     
     func loadChat() {
-        
-        //Fetch all the chats which has current user in it
-        let db = Firestore.firestore().collection("chat_familiarization")
-            .whereField("users", arrayContains: experimentID)
-        
+        let db = Firestore.firestore().collection("chat_collaboration").whereField("users", arrayContains: experimentID)
         
         db.getDocuments { (chatQuerySnap, error) in
             
@@ -239,14 +252,13 @@ class CollaborationChatViewController: MessagesViewController, InputBarAccessory
             if isInitial {
                 isInitial = false
                 DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
-                    self.sendBotMessage(text: "이번 단계에서는, 상대방과 5분간 특정 주제로 협업을 해본다")
-                    DispatchQueue.main.asyncAfter(deadline: .now()+2.0) {
-                        self.sendBotMessage(text: "구체적으로, 주제 ~~")
-                        DispatchQueue.main.asyncAfter(deadline: .now()+2.0) {
-                            self.sendBotMessage(text: "방법을 태그를 누른다")
-                            
-                            DispatchQueue.main.asyncAfter(deadline: .now()+2.0) {
-                                self.sendBotMessage(text: "시작해보자")
+                    self.sendBotMessage(text: "이번 단계에서는, 상대방과 5분간 특정 주제로 협업을 하게 됩니다")
+                    DispatchQueue.main.asyncAfter(deadline: .now()+3.0) {
+                        self.sendBotMessage(text: "구체적으로, '스마트폰을 이용해서 할 수 있는 것들'이라는 주제로 제한된 시간 내에 최대한 많은 아이디어를 추가해보는 태스크를 수행할 예정입니다")
+                        DispatchQueue.main.asyncAfter(deadline: .now()+3.0) {
+                            self.sendBotMessage(text: "예를 들어, '스마트폰으로 인터넷에 접속할 수 있다'는 아이디어를 추가하려면, 하단 바 오른쪽 태그 (@) 버튼을 누른 뒤, '인터넷에 접속하기'와 같은 방식으로 아이디어를 추가해주세요!")
+                            DispatchQueue.main.asyncAfter(deadline: .now()+3.0) {
+                                self.sendBotMessage(text: "그럼, 시작해볼까요?")
                             }
                         }
                     }
@@ -270,19 +282,14 @@ class CollaborationChatViewController: MessagesViewController, InputBarAccessory
     
     // MARK: - MessagesDataSource
     func currentSender() -> SenderType {
-        
         return Sender(id: experimentID, displayName: displayName)
-        
     }
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
-        
         return messages[indexPath.section]
-        
     }
     
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
-        
         return messages.count
     }
     
@@ -310,7 +317,6 @@ class CollaborationChatViewController: MessagesViewController, InputBarAccessory
     }
     
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
-        
         switch message.sender.senderId {
         case experimentID: avatarView.initials = "나"
         case user2ID: avatarView.initials = "상대"
@@ -319,8 +325,16 @@ class CollaborationChatViewController: MessagesViewController, InputBarAccessory
     }
     
     func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
-        
         let corner: MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight: .bottomLeft
         return .bubbleTail(corner, .curved)
+    }
+    func makeButton(image: UIImage) -> InputBarButtonItem {
+        return InputBarButtonItem()
+            .configure {
+                $0.spacing = .fixed(10)
+                $0.image = image.withRenderingMode(.alwaysTemplate)
+                $0.setSize(CGSize(width: 35, height: 35), animated: false)
+                $0.tintColor = .systemBlue
+            }
     }
 }

@@ -81,7 +81,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="928.98550724637687" y="71.651785714285708"/>
+            <point key="canvasLocation" x="784" y="-725"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bLC-c6-sba">
@@ -99,7 +99,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QY7-6Q-YZy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="18.840579710144929" y="71.651785714285708"/>
+            <point key="canvasLocation" x="39" y="-724"/>
         </scene>
         <!--InputID View Controller-->
         <scene sceneID="2Wu-Da-7yb">
@@ -193,12 +193,12 @@
                         <outlet property="nextButton" destination="5ue-vY-sm4" id="XVh-7f-GsI"/>
                         <segue destination="Pdl-do-4tT" kind="show" identifier="goInstaLogin" id="CFt-OY-95A"/>
                         <segue destination="6Xv-98-pYb" kind="show" identifier="goConversationConnection" id="xu5-GK-erl"/>
-                        <segue destination="naE-J0-Sn7" kind="show" identifier="goWithoutConversationConnection" id="Gdz-Fj-fWb"/>
+                        <segue destination="naE-J0-Sn7" kind="show" identifier="goCollaborationPrep3" id="Gdz-Fj-fWb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G9v-hN-ufg" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1674" y="72"/>
+            <point key="canvasLocation" x="1545" y="-725"/>
         </scene>
         <!--Login Insta View Controller-->
         <scene sceneID="qC9-Hn-Fgw">
@@ -268,7 +268,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4MQ-pW-Aht" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2354" y="72"/>
+            <point key="canvasLocation" x="2293" y="-724"/>
         </scene>
         <!--Topic Matching View Controller-->
         <scene sceneID="3d0-ow-em4">
@@ -368,7 +368,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="timeButton" destination="WQm-6v-TsN" id="y0O-O7-L8b"/>
-                        <segue destination="Ohi-AM-r2G" kind="show" identifier="goCollaboration1" id="CB7-6W-NpW"/>
+                        <segue destination="naE-J0-Sn7" kind="show" identifier="goCollaborationPrep1" id="fvO-A5-Y8B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1R6-0O-hmz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -465,7 +465,7 @@
                                     <action selector="connectionButtonClicked:" destination="naE-J0-Sn7" eventType="touchUpInside" id="mLi-Qp-4SJ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2. 상대방과 연결 준비" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lja-v1-Uyw">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3. 협업" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lja-v1-Uyw">
                                 <rect key="frame" x="30" y="103" width="354" height="36"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="30"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -501,12 +501,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="V8K-kk-ynq"/>
                     <connections>
+                        <outlet property="connectionButton" destination="hVR-vF-GTQ" id="XkX-Cl-Pav"/>
                         <segue destination="Ohi-AM-r2G" kind="show" identifier="goCollaboration3" id="cQF-f0-cmc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NU3-ps-mhQ" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3848" y="1482"/>
+            <point key="canvasLocation" x="4739" y="-725"/>
         </scene>
         <!--Fam Chat2 View Controller-->
         <scene sceneID="Xy2-xS-DUl">
@@ -520,7 +521,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="yHX-j3-9mr"/>
                     <connections>
-                        <segue destination="Ohi-AM-r2G" kind="show" identifier="goCollaboration2" id="vbc-QR-wtA"/>
+                        <segue destination="naE-J0-Sn7" kind="show" identifier="goCollaborationPrep2" id="5FF-oy-TEf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xLC-BN-q50" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -541,7 +542,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3kO-zn-lSx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4706" y="72"/>
+            <point key="canvasLocation" x="5533" y="-725"/>
         </scene>
         <!--Survey Web View Controller-->
         <scene sceneID="9lo-N0-E2W">
@@ -552,7 +553,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RtS-Yw-cPr">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -564,7 +565,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="RtS-Yw-cPr" firstAttribute="leading" secondItem="uc3-Ri-OlA" secondAttribute="leading" id="5Fz-lz-Qyk"/>
-                            <constraint firstItem="uc3-Ri-OlA" firstAttribute="bottom" secondItem="RtS-Yw-cPr" secondAttribute="bottom" id="9EV-OY-Ur7"/>
+                            <constraint firstAttribute="bottom" secondItem="RtS-Yw-cPr" secondAttribute="bottom" id="9EV-OY-Ur7"/>
                             <constraint firstItem="uc3-Ri-OlA" firstAttribute="trailing" secondItem="RtS-Yw-cPr" secondAttribute="trailing" id="hbm-TR-rVX"/>
                             <constraint firstItem="RtS-Yw-cPr" firstAttribute="top" secondItem="uc3-Ri-OlA" secondAttribute="top" id="kp2-Mk-XQh"/>
                         </constraints>
@@ -575,11 +576,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Jr-lX-XuM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5728" y="72"/>
+            <point key="canvasLocation" x="6333" y="-725"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="CB7-6W-NpW"/>
+        <segue reference="Gdz-Fj-fWb"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
     <resources>

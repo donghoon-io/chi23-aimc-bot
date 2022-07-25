@@ -65,7 +65,7 @@ class LoginInstaViewController: UIViewController, isAbleToReceiveData {
             ANLoader.hide()
             ANLoader.showLoading("상대방과 연결 중..", disableUI: true)
             
-            self.db.collection("user_data").document(experimentID).setData(["captions": self.posts]) { (error) in
+            self.db.collection("user_data").document(experimentID).setData(["captions": self.posts], merge: true) { (error) in
                 if let error = error {
                     self.showError(error: error, button: self.loginButton)
                     return

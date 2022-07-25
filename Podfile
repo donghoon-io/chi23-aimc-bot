@@ -13,4 +13,5 @@ target 'HelloBot' do
   pod 'Alamofire'
   pod 'SwiftyJSON'
   pod 'PINRemoteImage'
+  pod 'MessageInputBar'
 end

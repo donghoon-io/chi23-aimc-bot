@@ -30,8 +30,6 @@ class SurveyWebViewController: UIViewController {
         webView.navigationDelegate = self
 
         webView.load(request)
-
-        // Do any additional setup after loading the view.
     }
     private func setupProgressView() {
            guard let navigationBar = navigationController?.navigationBar else { return }
